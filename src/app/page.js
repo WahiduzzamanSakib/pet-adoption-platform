@@ -1,6 +1,7 @@
 import Banner from "@/components/Banner";
-import PetAdoptionHome from "@/components/PetAdoptionHome";
-import Image from "next/image";
+import PetAdoptionHome from "@/components/petAdoptionHome/PetAdoptionHome";
+
+
 
 export default function Home() {
   return (

@@ -3,6 +3,7 @@ import SuccessStories from "./SuccessStories";
 import WhyAdoptPets from "./WhyAdoptPets";
 
 
+
 export default function PetAdoptionHome() {
     return (
         <div className="max-w-6xl mx-auto px-4 py-12 bg-slate-50 min-h-screen">
@@ -19,7 +20,7 @@ export default function PetAdoptionHome() {
 
 
             <WhyAdoptPets />
-            {/* <SuccessStories/> */}
+            <SuccessStories/>
             <PetCareTips />
         </div>
     );
