@@ -1,7 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { CiLogin, CiLogout } from "react-icons/ci";
-import { FaHome, FaPaw } from "react-icons/fa";
+import { FaHome, FaPaw, FaUserPlus } from "react-icons/fa";
 
 export default function Navbar() {
     return (
@@ -58,7 +58,7 @@ export default function Navbar() {
                         href="/register"
                         className="flex gap-2 items-center rounded-lg bg-orange-500 px-5 py-2.5 font-medium text-white shadow-md transition hover:bg-orange-600"
                     >
-                      <CiLogout  size={20}/>  Register
+                        <FaUserPlus size={20} />  Register
                     </Link>
                 </div>
             </div>
