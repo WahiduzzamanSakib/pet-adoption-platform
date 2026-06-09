@@ -1,9 +1,6 @@
 @import "tailwindcss";
 @import "@heroui/styles"; 
 
-html {
-  scroll-behavior: smooth;
-}
 
 @keyframes marquee {
   from {

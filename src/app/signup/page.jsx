@@ -95,12 +95,17 @@ const SignUpPage = () => {
     };
 
     const handleGoogleLogin = async () => {
-        try {
-            console.log("Google login clicked");
+        const { data, error } = await authClient.signIn.social({
+            provider: "google",
+        });
 
-        } catch (error) {
-            console.error(error);
+        if (error) {
             toast.error("Google login failed");
+            return;
+        }
+
+        if (data) {
+            toast.success("Login successful!");
         }
     };
 
@@ -190,7 +195,7 @@ const SignUpPage = () => {
                     </Button>
                 </Form>
 
-                {/* Divider */}
+
                 <div className="flex items-center my-5">
                     <div className="flex-1 h-px bg-gray-200"></div>
                     <span className="px-3 text-xs text-gray-400">
@@ -199,7 +204,7 @@ const SignUpPage = () => {
                     <div className="flex-1 h-px bg-gray-200"></div>
                 </div>
 
-                {/* Google Login */}
+
                 <Button
                     onClick={handleGoogleLogin}
                     variant="secondary"
@@ -209,7 +214,7 @@ const SignUpPage = () => {
                     Continue with Google
                 </Button>
 
-                {/* Login Link */}
+
                 <p className="text-center text-xs sm:text-sm text-gray-500 mt-6">
                     Already have an account?{" "}
                     <Link

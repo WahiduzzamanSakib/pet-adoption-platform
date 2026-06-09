@@ -25,7 +25,7 @@ const SignInPage = () => {
         const formData = new FormData(e.currentTarget);
         const { email, password } = Object.fromEntries(formData);
 
-        // আগে validation
+       
         if (!email || !password) {
             toast.error("Email and Password are required");
             return;
@@ -37,7 +37,7 @@ const SignInPage = () => {
                 password,
             });
 
-           
+
 
             if (error) {
                 toast.error(error.message || "Invalid email or password");
@@ -57,14 +57,17 @@ const SignInPage = () => {
     };
 
     const handleGoogleLogin = async () => {
-        try {
-            toast.success("Google login successful!");
+        const { data, error } = await authClient.signIn.social({
+            provider: "google",
+        });
 
-            setTimeout(() => {
-                router.push("/");
-            }, 1000);
-        } catch (error) {
-            toast.error(error.message || "Google login failed");
+        if (error) {
+            toast.error("Google login failed");
+            return;
+        }
+
+        if (data) {
+            toast.success("Login successful!");
         }
     };
 
@@ -136,10 +139,10 @@ const SignInPage = () => {
 
                 {/* Register Link */}
                 <p className="text-center text-sm text-gray-500 mt-3">
-                    Don't have an account?{" "}
+                    Don't have an account? {" "}
                     <Link
                         href="/signup"
-                        className="font-medium text-black hover:underline"
+                        className="font-medium text-black hover:underline ml-2"
                     >
                         Register
                     </Link>

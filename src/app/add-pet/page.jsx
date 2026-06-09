@@ -15,8 +15,14 @@ import {
     TextField,
 } from "@heroui/react";
 import { HiChevronDown } from "react-icons/hi";
+import { authClient } from "@/lib/auth-client";
 
 const PetAddPage = () => {
+
+    const { data: session } = authClient.useSession();
+    const user = session?.user;
+   
+
     const handleSubmit = (e) => {
         e.preventDefault();
 
@@ -44,10 +50,10 @@ const PetAddPage = () => {
 
                         <hr className="border-default-100" />
 
-                        {/* Form Layout Grid */}
+
                         <Fieldset.Group className="grid grid-cols-1 gap-x-8 gap-y-6 md:grid-cols-2">
 
-                            {/* SECTION 1: Identity & Characteristics */}
+
                             <div className="space-y-5">
                                 <h3 className="text-sm font-semibold uppercase tracking-wider text-default-400">
                                     Pet Characteristics
@@ -267,7 +273,7 @@ const PetAddPage = () => {
                                 <TextField name="ownerEmail" className="max-w-md">
                                     <Label>Listing Manager Email</Label>
                                     <Input
-                                        value="owner@example.com"
+                                        value={user?.email || ""}
                                         readOnly
                                         disabled
                                         className="opacity-60 cursor-not-allowed bg-default-100"
@@ -295,7 +301,6 @@ const PetAddPage = () => {
                             </Button>
                         </Fieldset.Actions>
                     </Fieldset>
-
                 </form>
             </Surface>
         </div>
