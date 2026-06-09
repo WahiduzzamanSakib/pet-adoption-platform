@@ -17,47 +17,47 @@ import { useRouter } from "next/navigation";
 import { FcGoogle } from "react-icons/fc";
 import Image from "next/image";
 import { toast } from "react-toastify";
+import { authClient } from "@/lib/auth-client";
+import Link from "next/link";
 
 const SignUpPage = () => {
     const router = useRouter();
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
 
         const formData = new FormData(e.currentTarget);
         const user = Object.fromEntries(formData);
 
-        const { name, email, photo, password, confirmPassword } = user;
-
+        const {
+            name,
+            email,
+            image,
+            password,
+            confirmPassword,
+        } = user;
 
         const errors = [];
 
-        // Name validation
-        if (!name || name.trim().length < 2) {
-            errors.push("Name must be at least 2 characters long");
-        }
-
-        // Email validation
-        if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
-            errors.push("Please enter a valid email address");
-        }
-
-        // Photo URL validation
-        if (!photo || !photo.startsWith("http")) {
-            errors.push("Please enter a valid photo URL");
-        }
-
         // Password validation
-        if (password.length < 6) {
+        if (!password || password.length < 6) {
             errors.push("Password must be at least 6 characters");
         }
 
         if (!/[A-Z]/.test(password)) {
-            errors.push("Password must contain at least one uppercase letter");
+            errors.push(
+                "Password must contain at least one uppercase letter"
+            );
         }
 
         if (!/[a-z]/.test(password)) {
-            errors.push("Password must contain at least one lowercase letter");
+            errors.push(
+                "Password must contain at least one lowercase letter"
+            );
+        }
+
+        if (!/\d/.test(password)) {
+            errors.push("Password must contain at least one number");
         }
 
         // Confirm password validation
@@ -66,21 +66,42 @@ const SignUpPage = () => {
         }
 
         if (errors.length > 0) {
-            errors.forEach((error) => toast.error(error));
+            errors.forEach((err) => toast.error(err));
             return;
         }
 
-        toast.success("Registration successful!");
+        try {
+            const { data, error } = await authClient.signUp.email({
+                email,
+                password,
+                name,
+                image,
+            });
 
-        // TODO: Add Firebase/Auth registration here
+            if (error) {
+                toast.error(error.message || "Registration failed");
+                return;
+            }
 
-        setTimeout(() => {
-            router.push("/");
-        }, 1000);
+            toast.success("Registration successful!");
+
+            setTimeout(() => {
+                router.push("/");
+            }, 1000);
+        } catch (err) {
+            console.error(err);
+            toast.error("Something went wrong");
+        }
     };
 
-    const handleGoogleLogin = () => {
-        console.log("Google login clicked");
+    const handleGoogleLogin = async () => {
+        try {
+            console.log("Google login clicked");
+
+        } catch (error) {
+            console.error(error);
+            toast.error("Google login failed");
+        }
     };
 
     return (
@@ -110,30 +131,42 @@ const SignUpPage = () => {
                 </div>
 
                 {/* Form */}
-                <Form className="flex flex-col gap-4" onSubmit={handleSubmit}>
+                <Form
+                    className="flex flex-col gap-4"
+                    onSubmit={handleSubmit}
+                >
                     <TextField name="name" isRequired>
                         <Label>Name</Label>
                         <Input placeholder="John Doe" />
                         <FieldError />
                     </TextField>
 
-                    <TextField name="email" type="email" isRequired>
+                    <TextField
+                        name="email"
+                        type="email"
+                        isRequired
+                    >
                         <Label>Email</Label>
                         <Input placeholder="john@example.com" />
                         <FieldError />
                     </TextField>
 
-                    <TextField name="photo" isRequired>
+                    <TextField name="image" isRequired>
                         <Label>Photo URL</Label>
                         <Input placeholder="https://your-image.com/photo.jpg" />
                         <FieldError />
                     </TextField>
 
-                    <TextField name="password" type="password" isRequired>
+                    <TextField
+                        name="password"
+                        type="password"
+                        isRequired
+                    >
                         <Label>Password</Label>
                         <Input placeholder="Enter password" />
                         <Description>
-                            At least 6 characters, 1 uppercase, 1 lowercase
+                            Minimum 6 characters with uppercase,
+                            lowercase and number
                         </Description>
                         <FieldError />
                     </TextField>
@@ -160,7 +193,9 @@ const SignUpPage = () => {
                 {/* Divider */}
                 <div className="flex items-center my-5">
                     <div className="flex-1 h-px bg-gray-200"></div>
-                    <span className="px-3 text-xs text-gray-400">OR</span>
+                    <span className="px-3 text-xs text-gray-400">
+                        OR
+                    </span>
                     <div className="flex-1 h-px bg-gray-200"></div>
                 </div>
 
@@ -177,12 +212,12 @@ const SignUpPage = () => {
                 {/* Login Link */}
                 <p className="text-center text-xs sm:text-sm text-gray-500 mt-6">
                     Already have an account?{" "}
-                    <a
+                    <Link
                         href="/login"
                         className="text-black font-medium hover:underline"
                     >
                         Login
-                    </a>
+                    </Link>
                 </p>
             </Card>
         </div>
