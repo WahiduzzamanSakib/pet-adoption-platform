@@ -1,5 +1,6 @@
 import React from "react";
 import {
+    FaArrowRight,
     FaFacebookF,
     FaInstagram,
     FaLinkedinIn,
@@ -27,44 +28,32 @@ export default function Footer() {
 
 
                 <div className="flex flex-col gap-3">
-                    <h4 className="text-white text-lg font-semibold tracking-wide">
-                        Quick Links
-                    </h4>
-                    <ul className="flex flex-col gap-2.5">
-                        <li>
-                            <a
-                                href="/browse"
-                                className="text-gray-400 hover:text-blue-400 text-sm transition-colors duration-200"
-                            >
-                                Find a Pet
-                            </a>
-                        </li>
-                        <li>
-                            <a
-                                href="/about"
-                                className="text-gray-400 hover:text-blue-400 text-sm transition-colors duration-200"
-                            >
-                                Our Mission
-                            </a>
-                        </li>
-                        <li>
-                            <a
-                                href="/shelters"
-                                className="text-gray-400 hover:text-blue-400 text-sm transition-colors duration-200"
-                            >
-                                Partner Shelters
-                            </a>
-                        </li>
-                        <li>
-                            <a
-                                href="/volunteer"
-                                className="text-gray-400 hover:text-blue-400 text-sm transition-colors duration-200"
-                            >
-                                How to Help
-                            </a>
-                        </li>
-                    </ul>
-                </div>
+    <h4 className="text-white text-lg font-semibold tracking-wide">
+        Quick Links
+    </h4>
+
+    <ul className="flex flex-col gap-2.5">
+        {[
+            { href: "/browse", label: "Find a Pet" },
+            { href: "/about", label: "Our Mission" },
+            { href: "#", label: "Partner Shelters" },
+            { href: "#", label: "How to Help" },
+        ].map((link) => (
+            <li key={link.label}>
+                <a
+                    href={link.href}
+                    className="group inline-flex items-center gap-2 text-gray-400 hover:text-blue-400 text-sm transition-colors duration-200"
+                >
+
+                    <FaArrowRight
+                        className="opacity-0 -translate-x-2 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-300 text-xs"
+                        />
+                        {link.label}
+                </a>
+            </li>
+        ))}
+    </ul>
+</div>
 
 
                 <div className="flex flex-col gap-3">

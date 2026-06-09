@@ -27,7 +27,7 @@ const faqs = [
   }
 ];
 
-export default function MainSection () {
+export default function AdditionalSection () {
   return (
     <div className="bg-[#FAFAFA] min-h-screen text-slate-800">
 

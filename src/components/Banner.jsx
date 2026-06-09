@@ -38,12 +38,12 @@ export default function PetHeroBanner() {
                             Adopt Now
                         </a>
 
-                        <a
+                        {/* <a
                             href="/about"
                             className="inline-flex items-center justify-center px-6 py-3.5 rounded-xl border border-orange-600 text-orange-600 hover:bg-orange-50 transition-all duration-300"
                         >
                             Learn More
-                        </a>
+                        </a> */}
                     </div>
                 </div>
 
