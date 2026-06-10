@@ -1,6 +1,7 @@
 import React from "react";
 import Image from "next/image";
 import { FaPaw, FaHeart } from "react-icons/fa";
+import Link from "next/link";
 
 
 export default function PetHeroBanner() {
@@ -31,13 +32,13 @@ export default function PetHeroBanner() {
                     </p>
 
                     <div className="flex flex-col sm:flex-row gap-4 justify-center md:justify-start">
-                        <a
+                        <Link
                             href="/pets"
                             className="inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-xl text-white bg-orange-600 hover:bg-orange-700 transition-all duration-300"
                         >
                             <FaPaw />
                             Adopt Now
-                        </a>
+                        </Link>
 
                         {/* <a
                             href="/about"

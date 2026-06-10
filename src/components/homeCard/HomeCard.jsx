@@ -1,7 +1,7 @@
 import React, { Suspense } from "react";
-import AllPets from "./AllPets";
+import HomeCards from "./HomeCards";
 
-const AllPetsData =async () => {
+const HomeCard =async () => {
 
   const res = await fetch("http://localhost:5000/pets", {
     cache: "no-store",
@@ -16,9 +16,9 @@ const AllPetsData =async () => {
         </div>
       }
     >
-      <AllPets pets={pets}/>
+      <HomeCards pets={pets}/>
     </Suspense>
   );
 };
 
-export default AllPetsData;
+export default HomeCard;

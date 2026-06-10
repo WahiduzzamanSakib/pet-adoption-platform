@@ -30,6 +30,9 @@ const PetAddPage = () => {
         const formData = new FormData(e.currentTarget);
         const data = Object.fromEntries(formData.entries());
 
+        data.userId = user?.id;
+        data.ownerEmail = user?.email;
+
         console.log("Submitting Pet Listing Data:", data);
 
         try {
@@ -42,7 +45,7 @@ const PetAddPage = () => {
             });
             const result = await res.json();
             console.log(result);
-           toast.success("Pet added successfully!");
+            toast.success("Pet added successfully!");
         } catch (error) {
             console.error(error);
             toast.error("Failed to add pet");
@@ -150,7 +153,7 @@ const PetAddPage = () => {
 
                                         <div className="relative">
                                             <select
-                                                name="Gander"
+                                                name="gender"
                                                 required
                                                 defaultValue=""
                                                 className=" font-bold
