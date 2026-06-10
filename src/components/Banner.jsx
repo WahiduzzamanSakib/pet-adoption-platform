@@ -2,9 +2,10 @@ import React from "react";
 import Image from "next/image";
 import { FaPaw, FaHeart } from "react-icons/fa";
 
+
 export default function PetHeroBanner() {
     return (
-        <section className="relative bg-gradient-to-r from-orange-50 via-amber-50 to-yellow-100 overflow-hidden">
+        <section className="relative bg-gradient-to-r from-orange-50 via-amber-50 to-yellow-100 overflow-hidden ">
 
             <div className="absolute top-10 left-10 w-4 h-4 bg-orange-300 rounded-full opacity-50 animate-ping" />
 
@@ -15,7 +16,7 @@ export default function PetHeroBanner() {
 
                     <span className="inline-flex items-center gap-2 px-4 py-1.5 text-xs font-semibold uppercase tracking-wider text-orange-800 bg-orange-200/50 rounded-full">
                         <FaHeart className="text-orange-600" />
-                        Adopt • Rescue • Love
+                        Adopt • Rescue • Love 
                     </span>
 
                     <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-slate-900 leading-tight">

@@ -16,21 +16,40 @@ import {
 } from "@heroui/react";
 import { HiChevronDown } from "react-icons/hi";
 import { authClient } from "@/lib/auth-client";
+import { toast } from "react-toastify";
 
 const PetAddPage = () => {
 
     const { data: session } = authClient.useSession();
     const user = session?.user;
-   
 
-    const handleSubmit = (e) => {
+
+    const handleSubmit = async (e) => {
         e.preventDefault();
 
         const formData = new FormData(e.currentTarget);
         const data = Object.fromEntries(formData.entries());
 
-        console.log("Submitting Pet Listing Data: ", data);
+        console.log("Submitting Pet Listing Data:", data);
+
+        try {
+            const res = await fetch("http://localhost:5000/pets", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify(data),
+            });
+            const result = await res.json();
+            console.log(result);
+           toast.success("Pet added successfully!");
+        } catch (error) {
+            console.error(error);
+            toast.error("Failed to add pet");
+        };
     };
+
+
 
     return (
         <div className="min-h-screen w-full bg-default-50/50 flex items-center justify-center p-4 md:p-8">
@@ -131,7 +150,7 @@ const PetAddPage = () => {
 
                                         <div className="relative">
                                             <select
-                                                name="gander"
+                                                name="Gander"
                                                 required
                                                 defaultValue=""
                                                 className=" font-bold
