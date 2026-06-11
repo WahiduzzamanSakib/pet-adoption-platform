@@ -1,7 +1,7 @@
 "use client";
 
 import React from "react";
-import { FloppyDisk, Xmark } from "@gravity-ui/icons";
+
 import {
     Button,
     Description,
@@ -17,9 +17,11 @@ import {
 import { HiChevronDown } from "react-icons/hi";
 import { authClient } from "@/lib/auth-client";
 import { toast } from "react-toastify";
+import { useRouter } from "next/navigation";
+import { MdOutlineNoteAdd } from "react-icons/md";
 
 const PetAddPage = () => {
-
+const router = useRouter();
     const { data: session } = authClient.useSession();
     const user = session?.user;
 
@@ -46,6 +48,7 @@ const PetAddPage = () => {
             const result = await res.json();
             console.log(result);
             toast.success("Pet added successfully!");
+              router.push("/my-listings");
         } catch (error) {
             console.error(error);
             toast.error("Failed to add pet");
@@ -315,10 +318,10 @@ const PetAddPage = () => {
 
                             <Button
                                 type="submit"
-                                color="primary"
+                                variant="secondary"
                                 className="w-full sm:w-auto justify-center gap-2 font-medium shadow-sm"
                             >
-                                <FloppyDisk className="w-4 h-4" />
+                                <MdOutlineNoteAdd  className="w-4 h-4" />
                                 Add pet
                             </Button>
                         </Fieldset.Actions>

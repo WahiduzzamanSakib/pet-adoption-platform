@@ -19,6 +19,26 @@ import Image from "next/image";
 import { toast } from "react-toastify";
 import { authClient } from "@/lib/auth-client";
 import Link from "next/link";
+import { motion } from "framer-motion";
+
+// Animations
+const container = {
+    hidden: { opacity: 0, y: 25 },
+    show: {
+        opacity: 1,
+        y: 0,
+        transition: {
+            duration: 0.6,
+            when: "beforeChildren",
+            staggerChildren: 0.08,
+        },
+    },
+};
+
+const item = {
+    hidden: { opacity: 0, y: 10 },
+    show: { opacity: 1, y: 0 },
+};
 
 const SignUpPage = () => {
     const router = useRouter();
@@ -29,38 +49,22 @@ const SignUpPage = () => {
         const formData = new FormData(e.currentTarget);
         const user = Object.fromEntries(formData);
 
-        const {
-            name,
-            email,
-            image,
-            password,
-            confirmPassword,
-        } = user;
+        const { name, email, image, password, confirmPassword } = user;
 
         const errors = [];
 
-        // Password validation
         if (!password || password.length < 6) {
             errors.push("Password must be at least 6 characters");
         }
-
         if (!/[A-Z]/.test(password)) {
-            errors.push(
-                "Password must contain at least one uppercase letter"
-            );
+            errors.push("Password must contain at least one uppercase letter");
         }
-
         if (!/[a-z]/.test(password)) {
-            errors.push(
-                "Password must contain at least one lowercase letter"
-            );
+            errors.push("Password must contain at least one lowercase letter");
         }
-
         if (!/\d/.test(password)) {
             errors.push("Password must contain at least one number");
         }
-
-        // Confirm password validation
         if (password !== confirmPassword) {
             errors.push("Passwords do not match");
         }
@@ -111,120 +115,130 @@ const SignUpPage = () => {
 
     return (
         <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-gray-50 to-gray-100 px-4 py-6">
-            <Card className="w-full max-w-md sm:max-w-lg md:max-w-xl lg:max-w-2xl p-5 sm:p-6 md:p-8 shadow-xl rounded-2xl bg-white">
-                {/* Header */}
-                <div className="text-center mb-6">
-                    <div className="flex justify-center mb-2">
-                        <Image
-                            src="https://i.ibb.co/ns6LHjvF/Untitled-design.png"
-                            alt="Pet Adoption Logo"
-                            width={80}
-                            height={80}
-                            priority
-                            className="rounded-full"
-                        />
-                    </div>
 
-                    <h1 className="text-xl sm:text-2xl md:text-3xl font-bold text-gray-800">
-                        Join Our Pet Adoption Family
-                    </h1>
+            {/* Animated wrapper */}
+            <motion.div
+                variants={container}
+                initial="hidden"
+                animate="show"
+                className="w-full max-w-md sm:max-w-lg md:max-w-xl lg:max-w-2xl"
+            >
+                <Card className="p-5 sm:p-6 md:p-8 shadow-xl rounded-2xl bg-white">
 
-                    <p className="text-xs sm:text-sm text-gray-500 mt-2">
-                        Create an account to adopt lovable pets like dogs,
-                        cats, birds & more 🐶🐱
-                    </p>
-                </div>
+                    {/* Header */}
+                    <motion.div variants={item} className="text-center mb-6">
+                        <div className="flex justify-center mb-2">
+                            <Image
+                                src="https://i.ibb.co/ns6LHjvF/Untitled-design.png"
+                                alt="Pet Adoption Logo"
+                                width={80}
+                                height={80}
+                                priority
+                                className="rounded-full"
+                            />
+                        </div>
 
-                {/* Form */}
-                <Form
-                    className="flex flex-col gap-4"
-                    onSubmit={handleSubmit}
-                >
-                    <TextField name="name" isRequired>
-                        <Label>Name</Label>
-                        <Input placeholder="John Doe" />
-                        <FieldError />
-                    </TextField>
+                        <h1 className="text-xl sm:text-2xl md:text-3xl font-bold text-gray-800">
+                            Join Our Pet Adoption Family
+                        </h1>
 
-                    <TextField
-                        name="email"
-                        type="email"
-                        isRequired
-                    >
-                        <Label>Email</Label>
-                        <Input placeholder="john@example.com" />
-                        <FieldError />
-                    </TextField>
+                        <p className="text-xs sm:text-sm text-gray-500 mt-2">
+                            Create an account to adopt lovable pets 🐶🐱
+                        </p>
+                    </motion.div>
 
-                    <TextField name="image" isRequired>
-                        <Label>Photo URL</Label>
-                        <Input placeholder="https://your-image.com/photo.jpg" />
-                        <FieldError />
-                    </TextField>
+                    {/* Form */}
+                    <Form className="flex flex-col gap-4" onSubmit={handleSubmit}>
 
-                    <TextField
-                        name="password"
-                        type="password"
-                        isRequired
-                    >
-                        <Label>Password</Label>
-                        <Input placeholder="Enter password" />
-                        <Description>
-                            Minimum 6 characters with uppercase,
-                            lowercase and number
-                        </Description>
-                        <FieldError />
-                    </TextField>
+                        <motion.div variants={item}>
+                            <TextField name="name" isRequired>
+                                <Label>Name</Label>
+                                <Input placeholder="John Doe" />
+                                <FieldError />
+                            </TextField>
+                        </motion.div>
 
-                    <TextField
-                        name="confirmPassword"
-                        type="password"
-                        isRequired
-                    >
-                        <Label>Confirm Password</Label>
-                        <Input placeholder="Re-enter password" />
-                        <FieldError />
-                    </TextField>
+                        <motion.div variants={item}>
+                            <TextField name="email" type="email" isRequired>
+                                <Label>Email</Label>
+                                <Input placeholder="john@example.com" />
+                                <FieldError />
+                            </TextField>
+                        </motion.div>
 
-                    <Button
-                        type="submit"
-                        className="w-full bg-black text-white hover:bg-gray-800"
-                    >
-                        <Check />
-                        Create Account
-                    </Button>
-                </Form>
+                        <motion.div variants={item}>
+                            <TextField name="image" isRequired>
+                                <Label>Photo URL</Label>
+                                <Input placeholder="https://your-image.com/photo.jpg" />
+                                <FieldError />
+                            </TextField>
+                        </motion.div>
 
+                        <motion.div variants={item}>
+                            <TextField name="password" type="password" isRequired>
+                                <Label>Password</Label>
+                                <Input placeholder="Enter password" />
+                                <Description>
+                                    Minimum 6 characters with uppercase, lowercase and number
+                                </Description>
+                                <FieldError />
+                            </TextField>
+                        </motion.div>
 
-                <div className="flex items-center my-5">
-                    <div className="flex-1 h-px bg-gray-200"></div>
-                    <span className="px-3 text-xs text-gray-400">
-                        OR
-                    </span>
-                    <div className="flex-1 h-px bg-gray-200"></div>
-                </div>
+                        <motion.div variants={item}>
+                            <TextField name="confirmPassword" type="password" isRequired>
+                                <Label>Confirm Password</Label>
+                                <Input placeholder="Re-enter password" />
+                                <FieldError />
+                            </TextField>
+                        </motion.div>
 
+                        <motion.div
+                            variants={item}
+                            whileTap={{ scale: 0.97 }}
+                        >
+                            <Button
+                                type="submit"
+                                className="w-full bg-black text-white hover:bg-gray-800"
+                            >
+                                <Check />
+                                Create Account
+                            </Button>
+                        </motion.div>
+                    </Form>
 
-                <Button
-                    onClick={handleGoogleLogin}
-                    variant="secondary"
-                    className="w-full flex items-center justify-center gap-2 border hover:bg-gray-50"
-                >
-                    <FcGoogle size={20} />
-                    Continue with Google
-                </Button>
+                    {/* Divider */}
+                    <motion.div variants={item} className="flex items-center my-5">
+                        <div className="flex-1 h-px bg-gray-200"></div>
+                        <span className="px-3 text-xs text-gray-400">OR</span>
+                        <div className="flex-1 h-px bg-gray-200"></div>
+                    </motion.div>
 
+                    {/* Google */}
+                    <motion.div variants={item} whileTap={{ scale: 0.97 }}>
+                        <Button
+                            onClick={handleGoogleLogin}
+                            variant="secondary"
+                            className="w-full flex items-center justify-center gap-2 border hover:bg-gray-50"
+                        >
+                            <FcGoogle size={20} />
+                            Continue with Google
+                        </Button>
+                    </motion.div>
 
-                <p className="text-center text-xs sm:text-sm text-gray-500 mt-6">
-                    Already have an account?{" "}
-                    <Link
-                        href="/login"
-                        className="text-black font-medium hover:underline"
-                    >
-                        Login
-                    </Link>
-                </p>
-            </Card>
+                    {/* Footer */}
+                    <motion.p variants={item} className="text-center text-xs sm:text-sm text-gray-500 mt-6">
+                        Already have an account?{" "}
+                        <Link
+                            href="/login"
+                            className="text-black font-medium hover:underline"
+                        >
+                            Login
+                        </Link>
+                    </motion.p>
+
+                </Card>
+            </motion.div>
         </div>
     );
 };

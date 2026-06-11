@@ -1,71 +1,100 @@
-import React from "react";
+"use client";
 
-const DashboardPage = () => {
+import { useState } from "react";
+import { Button } from "@heroui/react";
+import {
+  FaHome,
+  FaClipboardList,
+  FaListUl,
+  FaPlusCircle,
+} from "react-icons/fa";
+
+import PetAddPage from "../add-pet/page";
+import MyListing from "../my-listings/page";
+import RequestPage from "../requests/page";
+
+export default function Dashboard() {
+  const [active, setActive] = useState("home");
+
+  const menu = [
+    { key: "home", label: "Home", icon: FaHome },
+    { key: "requests", label: "Requests", icon: FaClipboardList },
+    { key: "listings", label: "My Listing", icon: FaListUl },
+    { key: "add", label: "Add Pet", icon: FaPlusCircle },
+  ];
+
+  const renderContent = () => {
+    switch (active) {
+      case "home":
+        return <h1 className="text-xl font-semibold">🏠 Dashboard Home Data</h1>;
+      case "requests":
+        return <RequestPage/>;
+      case "listings":
+        return <MyListing />;
+      case "add":
+        return <PetAddPage />;
+      default:
+        return null;
+    }
+  };
+
   return (
-    <div className="flex h-screen bg-gray-100">
+    <div className="flex flex-col md:flex-row h-screen bg-gray-100">
 
-      {/* SIDEBAR */}
-      <aside className="w-64 bg-blue-600 text-white p-5">
-        <h1 className="text-2xl font-bold mb-8">🐾 Dashboard</h1>
+      {/* Desktop Sidebar (HeroUI Button) */}
+      <div className="hidden md:flex w-64 bg-gray-900 text-white p-4 flex-col gap-2">
+        <h2 className="text-lg font-bold mb-4">Dashboard</h2>
 
-        <nav className="space-y-3">
-          <div className="p-2 rounded hover:bg-blue-700 cursor-pointer">
-            Dashboard
-          </div>
-          <div className="p-2 rounded hover:bg-blue-700 cursor-pointer">
-            My Requests
-          </div>
-          <div className="p-2 rounded hover:bg-blue-700 cursor-pointer">
-            Add Pet
-          </div>
-          <div className="p-2 rounded hover:bg-blue-700 cursor-pointer">
-            My Listings
-          </div>
-        </nav>
-      </aside>
+        {menu.map((item) => {
+          const Icon = item.icon;
 
-      {/* MAIN AREA */}
-      <div className="flex-1 flex flex-col">
+          return (
+            <Button
+              key={item.key}
+              onPress={() => setActive(item.key)}
+              className={`justify-start gap-3 w-full transition font-medium
+                ${
+                  active === item.key
+                    ? "bg-indigo-600 text-white"
+                    : "bg-gray-800 text-gray-200 hover:bg-gray-700"
+                }`}
+            >
+              <Icon />
+              {item.label}
+            </Button>
+          );
+        })}
+      </div>
 
-        {/* TOP BAR */}
-        <header className="bg-white shadow p-4 flex justify-between items-center">
-          <h2 className="text-lg font-semibold">Dashboard</h2>
-          <div className="text-gray-600">👤 Profile</div>
-        </header>
+      {/* Main Content */}
+      <div className="flex-1 p-4 md:p-6 overflow-y-auto pb-20 md:pb-6">
+        {renderContent()}
+      </div>
 
-        {/* CONTENT */}
-        <main className="p-6">
+      {/* Mobile Bottom Navbar (HeroUI Buttons) */}
+      <div className="fixed bottom-0 left-0 right-0 md:hidden bg-gray-900 border-t border-gray-700 flex justify-around py-2">
+        {menu.map((item) => {
+          const Icon = item.icon;
 
-          {/* STATS CARDS */}
-          <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
-
-            <div className="bg-white p-5 rounded shadow">
-              <h3 className="text-gray-500">My Requests</h3>
-              <p className="text-2xl font-bold">12</p>
-            </div>
-
-            <div className="bg-white p-5 rounded shadow">
-              <h3 className="text-gray-500">Add Pet</h3>
-              <p className="text-2xl font-bold">➕</p>
-            </div>
-
-            <div className="bg-white p-5 rounded shadow">
-              <h3 className="text-gray-500">My Listings</h3>
-              <p className="text-2xl font-bold">8</p>
-            </div>
-
-            <div className="bg-white p-5 rounded shadow">
-              <h3 className="text-gray-500">Total Pets</h3>
-              <p className="text-2xl font-bold">20</p>
-            </div>
-
-          </div>
-
-        </main>
+          return (
+            <Button
+              key={item.key}
+              variant="light"
+              onPress={() => setActive(item.key)}
+              className={`flex flex-col items-center gap-1 min-w-0 text-xs
+                ${
+                  active === item.key
+                    ? "text-indigo-400"
+                    : "text-gray-300"
+                }`}
+            >
+              <Icon className="text-lg" />
+              {item.label}
+            </Button>
+          );
+        })}
       </div>
 
     </div>
   );
-};
-
-export default DashboardPage;
+}
