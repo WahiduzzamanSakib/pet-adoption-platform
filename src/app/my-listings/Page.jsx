@@ -61,9 +61,9 @@ export default function MyListing() {
                 <p className="text-gray-500">No listings found</p>
             )}
 
-            
+
             <div>
-               
+
                 <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
                     {pets.map((pet) => (
                         <div
@@ -71,10 +71,10 @@ export default function MyListing() {
                             className="bg-white rounded-2xl shadow-md border overflow-hidden
       transition-all duration-300 hover:shadow-2xl hover:-translate-y-2 hover:scale-[1.02]"
                         >
-                        
+
                             <div className="relative">
                                 <img
-                                    src={pet.imageUrl}
+                                    src={pet.imageUrl || "/default-pet.png"}
                                     alt={pet.petName}
                                     className="w-full h-60 object-cover transition-transform duration-300 hover:scale-105"
                                 />
@@ -83,26 +83,26 @@ export default function MyListing() {
                                     {pet.Species}
                                 </span>
 
-                                
+
                                 <span className="absolute top-3 right-3 bg-black/70 text-white text-xs px-3 py-1 rounded-full">
                                     $ {pet.adoptionFee}
                                 </span>
                             </div>
 
-                            
+
                             <div className="p-5 space-y-3">
-                                
+
                                 <h2 className="text-xl font-bold flex items-center gap-2">
                                     <FaPaw className="text-pink-500" />
                                     {pet.petName}
                                 </h2>
 
-                             
+
                                 <p className="text-gray-600 text-sm line-clamp-2">
                                     {pet.description}
                                 </p>
 
-                              
+
                                 <div className="space-y-2 text-sm text-gray-700">
                                     <p className="flex items-center gap-2 font-bold">
                                         <FaVenusMars className="text-blue-500" />
@@ -120,9 +120,9 @@ export default function MyListing() {
                                     </p>
                                 </div>
 
-                               
+
                                 <div className="grid grid-cols-2 gap-2 pt-3">
-                                    
+
                                     <button
                                         onClick={() => handleOpenRequests(pet)}
                                         className="bg-yellow-500 hover:bg-yellow-600 text-white text-sm py-2 rounded-lg font-semibold transition"
@@ -130,7 +130,7 @@ export default function MyListing() {
                                         Requests
                                     </button>
 
-                                   <EditModal petData={pet}/>
+                                    <EditModal petData={pet} />
 
                                     <Link
                                         href={`/pets/${pet._id}`}
@@ -139,7 +139,7 @@ export default function MyListing() {
                                         View
                                     </Link>
 
-                                  
+
                                     <button
                                         onClick={() => handleDeletePet(pet._id)}
                                         className="bg-red-500 hover:bg-red-600 text-white text-sm py-2 rounded-lg font-semibold transition"
