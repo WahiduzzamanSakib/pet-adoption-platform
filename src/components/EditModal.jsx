@@ -1,6 +1,6 @@
 "use client";
 
-import { authClient } from "@/lib/auth-client";
+
 import {
     Button,
     FieldError,
@@ -15,16 +15,12 @@ import {
 import { useState } from "react";
 import { FaRegEdit } from "react-icons/fa";
 import { HiChevronDown } from "react-icons/hi";
+import { LuSave } from "react-icons/lu";
 
 export function EditModal({ petData }) {
     const { _id, petName, breed, location } = petData
 
-    const { data: session } = authClient.useSession();
-    const email = session?.user?.email || "";
-    const name = session?.user?.name || "";
-
     const [open, setOpen] = useState(false);
-
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -58,10 +54,13 @@ export function EditModal({ petData }) {
     return (
         <Modal isOpen={open} onOpenChange={setOpen}>
 
-            <Button onPress={() => setOpen(true)}>
+            <Button
+            variant="secondary"
+            className="rounded-lg"
+            onPress={() => setOpen(true)}>
                 <FaRegEdit /> Edit
             </Button>
-            
+
             <Modal.Backdrop>
                 <Modal.Container placement="center">
                     <Modal.Dialog className="sm:max-w-md w-full max-h-[90vh] flex flex-col">
@@ -172,8 +171,8 @@ export function EditModal({ petData }) {
 
 
                                         <div className="border-t border-default-100 pt-4 flex justify-end">
-                                            <Button type="submit">
-                                                Save Changes
+                                            <Button variant="secondary" type="submit">
+                                                <LuSave /> Save Changes
                                             </Button>
                                         </div>
                                     </form>

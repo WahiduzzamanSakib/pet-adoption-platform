@@ -1,5 +1,6 @@
 "use client";
 
+import { DeletedAlert } from "@/components/DeletedAlert";
 import { EditModal } from "@/components/EditModal";
 import { authClient } from "@/lib/auth-client";
 import Link from "next/link";
@@ -58,7 +59,7 @@ export default function MyListing() {
             {error && <p className="text-red-500">{error}</p>}
 
             {!loading && pets.length === 0 && (
-                <p className="text-gray-500">No listings found</p>
+                <p className="text-gray-500 text-center text-2xl font-bold">No listings found</p>
             )}
 
 
@@ -124,6 +125,7 @@ export default function MyListing() {
                                 <div className="grid grid-cols-2 gap-2 pt-3">
 
                                     <button
+                                    
                                         onClick={() => handleOpenRequests(pet)}
                                         className="bg-yellow-500 hover:bg-yellow-600 text-white text-sm py-2 rounded-lg font-semibold transition"
                                     >
@@ -133,6 +135,7 @@ export default function MyListing() {
                                     <EditModal petData={pet} />
 
                                     <Link
+                                    variant="tertiary"
                                         href={`/pets/${pet._id}`}
                                         className="bg-indigo-600 hover:bg-indigo-700 text-white text-sm py-2 rounded-lg font-semibold text-center transition"
                                     >
@@ -140,12 +143,7 @@ export default function MyListing() {
                                     </Link>
 
 
-                                    <button
-                                        onClick={() => handleDeletePet(pet._id)}
-                                        className="bg-red-500 hover:bg-red-600 text-white text-sm py-2 rounded-lg font-semibold transition"
-                                    >
-                                        Delete
-                                    </button>
+                                   <DeletedAlert petData={pet}/>
                                 </div>
                             </div>
                         </div>
