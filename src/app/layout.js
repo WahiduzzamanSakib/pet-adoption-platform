@@ -5,7 +5,6 @@ import Navber from "@/components/Navber";
 import { ToastContainer } from "react-toastify";
 import Providers from "./providers";
 
-
 const geistSans = Geist({
   variable: "--font-geist-sans",
   subsets: ["latin"],
@@ -25,17 +24,18 @@ export default function RootLayout({ children }) {
   return (
     <html
       lang="en"
-      data-scroll-behavior="smooth"
       className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
-        suppressHydrationWarning
+      suppressHydrationWarning
     >
       <body className="min-h-full flex flex-col">
-       <Providers>
+        <Providers>
           <Navber />
-          {children}
+          <main className="flex-1">{children}</main>
           <Footer />
-          </Providers>
+
+        
           <ToastContainer />
+        </Providers>
       </body>
     </html>
   );

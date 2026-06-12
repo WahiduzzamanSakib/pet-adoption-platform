@@ -9,6 +9,7 @@ import {
   FaMapMarkerAlt,
 } from "react-icons/fa";
 import { MdHealthAndSafety } from "react-icons/md";
+import Image from "next/image";
 
 const AllPets = () => {
   const [pets, setPets] = useState([]);
@@ -98,11 +99,16 @@ const AllPets = () => {
           >
            
             <div className="relative">
-              <img
-                src={pet.imageUrl}
-                alt={pet.petName}
-                className="w-full h-60 object-cover transition-transform duration-300 hover:scale-105"
-              />
+           
+
+<div className="relative w-full h-60">
+  <Image
+    src={pet.imageUrl}
+    alt={pet.petName}
+    fill
+    className="object-cover transition-transform duration-300 hover:scale-105"
+  />
+</div>
               <span className="absolute top-3 left-3 bg-green-500 text-white text-xs px-3 py-1 rounded-full shadow">
                 {pet.Species}
               </span>
