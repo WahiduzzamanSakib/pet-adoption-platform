@@ -36,6 +36,7 @@ export default function Header() {
       await authClient.signOut?.();
     } finally {
       setAvatarOpen(false);
+        window.location.href = "/login";
     }
   };
 

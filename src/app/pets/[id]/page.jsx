@@ -5,13 +5,18 @@ import { useParams } from "next/navigation";
 import { Button, Chip } from "@heroui/react";
 import Image from "next/image";
 import { motion } from "framer-motion";
+import { authClient } from "@/lib/auth-client";
 
 export default function DetailsPage() {
   const { id } = useParams();
 
+  const { data: session, isLoading: sessionLoading } =
+    authClient.useSession();
+
   const [pet, setPet] = useState(null);
   const [loading, setLoading] = useState(true);
 
+  // Fetch pet data
   useEffect(() => {
     const loadData = async () => {
       try {
@@ -28,13 +33,11 @@ export default function DetailsPage() {
       }
     };
 
-    if (id) {
-      loadData();
-    }
+    if (id) loadData();
   }, [id]);
 
   // Loading UI
-  if (loading) {
+  if (loading || sessionLoading) {
     return (
       <div className="min-h-screen flex items-center justify-center">
         <motion.div
@@ -50,41 +53,39 @@ export default function DetailsPage() {
     );
   }
 
-  // No Data Found
+  // No pet found
   if (!pet) {
     return (
       <div className="flex items-center justify-center min-h-screen">
-        <motion.h1
-          initial={{ opacity: 0, scale: 0.8 }}
-          animate={{ opacity: 1, scale: 1 }}
-          className="text-xl text-red-500"
-        >
-          No Data Found
-        </motion.h1>
+        <h1 className="text-red-500 text-xl">No Data Found</h1>
       </div>
     );
   }
 
+  // ✅ FIXED OWNER CHECK (BASED ON YOUR REAL DATA)
+  const userId = session?.user?.id;
+
+  const isOwner =
+    userId &&
+    pet?.userId &&
+    String(userId) === String(pet.userId);
+
   return (
     <div className="max-w-6xl mx-auto py-10 px-4">
-      <motion.div
-        initial={{ opacity: 0, y: 40 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.6 }}
-        className="bg-white rounded-2xl shadow-lg overflow-hidden"
-      >
-        <div className="grid md:grid-cols-2 gap-0">
-         
+      <motion.div className="bg-white rounded-2xl shadow-lg overflow-hidden">
+        <div className="grid md:grid-cols-2">
+
+          {/* Image */}
           <motion.div
-            initial={{ opacity: 0, x: -60 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.8 }}
             className="bg-gray-50 flex items-center justify-center p-6"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
           >
             <motion.div
-              whileHover={{ scale: 1.03 }}
-              transition={{ type: "spring", stiffness: 300 }}
-              className="w-full"
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.98 }}
+              transition={{ type: "spring", stiffness: 200, damping: 15 }}
             >
               <Image
                 src={pet.imageUrl}
@@ -97,90 +98,52 @@ export default function DetailsPage() {
             </motion.div>
           </motion.div>
 
-          
-          <motion.div
-            initial={{ opacity: 0, x: 60 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.8, delay: 0.2 }}
-            className="p-6 md:p-10 flex flex-col gap-6"
-          >
-           
-            <motion.h1
-              initial={{ opacity: 0, y: 15 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.3 }}
-              className="text-3xl font-bold"
-            >
-              {pet.petName}
-            </motion.h1>
+          {/* Details */}
+          <div className="p-6 md:p-10 flex flex-col gap-6">
+            <h1 className="text-3xl font-bold">{pet.petName}</h1>
 
-          
-            <motion.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ delay: 0.4 }}
-              className="flex flex-wrap gap-2"
-            >
+            <div className="flex gap-2 flex-wrap">
               <Chip color="primary">{pet.Species}</Chip>
               <Chip color="success">{pet.healthStatus}</Chip>
               <Chip color="warning">{pet.vaccinationStatus}</Chip>
-            </motion.div>
+            </div>
 
-            <motion.div
-              initial={{ opacity: 0, y: 25 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.5 }}
-              className="grid grid-cols-2 gap-3 text-sm bg-gray-50 p-4 rounded-xl"
-            >
-              <p>
-                <b>Breed:</b> {pet.breed}
-              </p>
-              <p>
-                <b>Age:</b> {pet.age}
-              </p>
-              <p>
-                <b>Gender:</b> {pet.gender}
-              </p>
-              <p>
-                <b>Location:</b> {pet.location}
-              </p>
+            <div className="grid grid-cols-2 gap-3 text-sm bg-gray-50 p-4 rounded-xl">
+              <p><b>Breed:</b> {pet.breed}</p>
+              <p><b>Age:</b> {pet.age}</p>
+              <p><b>Gender:</b> {pet.gender}</p>
+              <p><b>Location:</b> {pet.location}</p>
               <p className="col-span-2">
                 <b>Adoption Fee:</b>{" "}
                 <span className="text-green-600 font-semibold">
                   ${pet.adoptionFee}
                 </span>
               </p>
-            </motion.div>
+            </div>
 
-            {/* Description */}
-            <motion.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ delay: 0.7 }}
-            >
-              <h3 className="font-semibold mb-2 text-lg">About</h3>
-              <p className="text-gray-600 leading-relaxed">
-                {pet.description}
-              </p>
-            </motion.div>
+            <div>
+              <h3 className="font-semibold text-lg mb-2">About</h3>
+              <p className="text-gray-600">{pet.description}</p>
+            </div>
 
-            {/* Adopt Button */}
-            <motion.div
-              initial={{ opacity: 0, y: 30 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.9 }}
-              whileHover={{ scale: 1.03 }}
-              whileTap={{ scale: 0.97 }}
+            {/* ADOPT BUTTON (FIXED) */}
+            <Button
+              color="secondary"
+              className={`w-full font-semibold text-white ${isOwner ? "opacity-50 cursor-not-allowed" : ""
+                }`}
+              size="lg"
+              disabled={isOwner}
+              onClick={() => {
+                if (isOwner) return;
+
+                console.log("Adoption request sent");
+              }}
             >
-              <Button
-                color="secondary"
-                className="w-full font-semibold text-white"
-                size="lg"
-              >
-                Adopt Now 🐾
-              </Button>
-            </motion.div>
-          </motion.div>
+              {isOwner
+                ? "Owner this pet 🐶"
+                : "Adopt Now 🐾"}
+            </Button>
+          </div>
         </div>
       </motion.div>
     </div>
