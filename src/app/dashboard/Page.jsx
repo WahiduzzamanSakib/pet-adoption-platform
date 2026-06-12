@@ -26,9 +26,13 @@ export default function Dashboard() {
   const renderContent = () => {
     switch (active) {
       case "home":
-        return <h1 className="text-xl font-semibold">🏠 Dashboard Home Data</h1>;
+        return (
+          <h1 className="text-xl font-semibold text-gray-900 dark:text-white">
+            🏠 Dashboard Home Data
+          </h1>
+        );
       case "requests":
-        return <RequestPage/>;
+        return <RequestPage />;
       case "listings":
         return <MyListing />;
       case "add":
@@ -39,11 +43,14 @@ export default function Dashboard() {
   };
 
   return (
-    <div className="flex flex-col md:flex-row h-screen bg-gray-100">
+    <div className="flex flex-col md:flex-row h-screen bg-gray-100 dark:bg-gray-950">
 
-      {/* Desktop Sidebar (HeroUI Button) */}
-      <div className="hidden md:flex w-64 bg-gray-900 text-white p-4 flex-col gap-2">
-        <h2 className="text-lg font-bold mb-4">Dashboard</h2>
+      {/* Desktop Sidebar */}
+      <div className="hidden md:flex w-64 bg-gray-900 dark:bg-gray-900 text-white p-4 flex-col gap-2 border-r border-gray-800">
+
+        <h2 className="text-lg font-bold mb-4 text-white">
+          Dashboard
+        </h2>
 
         {menu.map((item) => {
           const Icon = item.icon;
@@ -67,12 +74,13 @@ export default function Dashboard() {
       </div>
 
       {/* Main Content */}
-      <div className="flex-1 p-4 md:p-6 overflow-y-auto pb-20 md:pb-6">
+      <div className="flex-1 p-4 md:p-6 overflow-y-auto pb-20 md:pb-6 bg-white dark:bg-gray-950">
         {renderContent()}
       </div>
 
-      {/* Mobile Bottom Navbar (HeroUI Buttons) */}
-      <div className="fixed bottom-0 left-0 right-0 md:hidden bg-gray-900 border-t border-gray-700 flex justify-around py-2">
+      {/* Mobile Bottom Navbar */}
+      <div className="fixed bottom-0 left-0 right-0 md:hidden bg-gray-900 dark:bg-gray-900 border-t border-gray-700 flex justify-around py-2">
+
         {menu.map((item) => {
           const Icon = item.icon;
 
@@ -93,6 +101,7 @@ export default function Dashboard() {
             </Button>
           );
         })}
+
       </div>
 
     </div>

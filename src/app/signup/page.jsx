@@ -21,7 +21,6 @@ import { authClient } from "@/lib/auth-client";
 import Link from "next/link";
 import { motion } from "framer-motion";
 
-// Animations
 const container = {
     hidden: { opacity: 0, y: 25 },
     show: {
@@ -114,19 +113,19 @@ const SignUpPage = () => {
     };
 
     return (
-        <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-gray-50 to-gray-100 px-4 py-6">
+        <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-gray-50 to-gray-100 dark:from-gray-950 dark:to-gray-900 px-4 py-6">
 
-            {/* Animated wrapper */}
             <motion.div
                 variants={container}
                 initial="hidden"
                 animate="show"
                 className="w-full max-w-md sm:max-w-lg md:max-w-xl lg:max-w-2xl"
             >
-                <Card className="p-5 sm:p-6 md:p-8 shadow-xl rounded-2xl bg-white">
+                <Card className="p-5 sm:p-6 md:p-8 shadow-xl rounded-2xl bg-white dark:bg-gray-900 border dark:border-gray-800">
 
-                    {/* Header */}
+                   
                     <motion.div variants={item} className="text-center mb-6">
+
                         <div className="flex justify-center mb-2">
                             <Image
                                 src="https://i.ibb.co/ns6LHjvF/Untitled-design.png"
@@ -138,22 +137,22 @@ const SignUpPage = () => {
                             />
                         </div>
 
-                        <h1 className="text-xl sm:text-2xl md:text-3xl font-bold text-gray-800">
+                        <h1 className="text-xl sm:text-2xl md:text-3xl font-bold text-gray-800 dark:text-white">
                             Join Our Pet Adoption Family
                         </h1>
 
-                        <p className="text-xs sm:text-sm text-gray-500 mt-2">
+                        <p className="text-xs sm:text-sm text-gray-500 dark:text-gray-300 mt-2">
                             Create an account to adopt lovable pets 🐶🐱
                         </p>
                     </motion.div>
 
-                    {/* Form */}
+                  
                     <Form className="flex flex-col gap-4" onSubmit={handleSubmit}>
 
                         <motion.div variants={item}>
                             <TextField name="name" isRequired>
                                 <Label>Name</Label>
-                                <Input placeholder="John Doe" />
+                                <Input className="dark:bg-gray-800 dark:text-white" placeholder="John Doe" />
                                 <FieldError />
                             </TextField>
                         </motion.div>
@@ -161,7 +160,7 @@ const SignUpPage = () => {
                         <motion.div variants={item}>
                             <TextField name="email" type="email" isRequired>
                                 <Label>Email</Label>
-                                <Input placeholder="john@example.com" />
+                                <Input className="dark:bg-gray-800 dark:text-white" placeholder="john@example.com" />
                                 <FieldError />
                             </TextField>
                         </motion.div>
@@ -169,7 +168,7 @@ const SignUpPage = () => {
                         <motion.div variants={item}>
                             <TextField name="image" isRequired>
                                 <Label>Photo URL</Label>
-                                <Input placeholder="https://your-image.com/photo.jpg" />
+                                <Input className="dark:bg-gray-800 dark:text-white" placeholder="https://your-image.com/photo.jpg" />
                                 <FieldError />
                             </TextField>
                         </motion.div>
@@ -177,8 +176,8 @@ const SignUpPage = () => {
                         <motion.div variants={item}>
                             <TextField name="password" type="password" isRequired>
                                 <Label>Password</Label>
-                                <Input placeholder="Enter password" />
-                                <Description>
+                                <Input className="dark:bg-gray-800 dark:text-white" placeholder="Enter password" />
+                                <Description className="dark:text-gray-400">
                                     Minimum 6 characters with uppercase, lowercase and number
                                 </Description>
                                 <FieldError />
@@ -188,18 +187,15 @@ const SignUpPage = () => {
                         <motion.div variants={item}>
                             <TextField name="confirmPassword" type="password" isRequired>
                                 <Label>Confirm Password</Label>
-                                <Input placeholder="Re-enter password" />
+                                <Input className="dark:bg-gray-800 dark:text-white" placeholder="Re-enter password" />
                                 <FieldError />
                             </TextField>
                         </motion.div>
 
-                        <motion.div
-                            variants={item}
-                            whileTap={{ scale: 0.97 }}
-                        >
+                        <motion.div whileTap={{ scale: 0.97 }}>
                             <Button
                                 type="submit"
-                                className="w-full bg-black text-white hover:bg-gray-800"
+                                className="w-full bg-black text-white hover:bg-gray-800 dark:bg-gray-700 dark:hover:bg-gray-600"
                             >
                                 <Check />
                                 Create Account
@@ -207,31 +203,33 @@ const SignUpPage = () => {
                         </motion.div>
                     </Form>
 
-                    {/* Divider */}
+                  
                     <motion.div variants={item} className="flex items-center my-5">
-                        <div className="flex-1 h-px bg-gray-200"></div>
-                        <span className="px-3 text-xs text-gray-400">OR</span>
-                        <div className="flex-1 h-px bg-gray-200"></div>
+                        <div className="flex-1 h-px bg-gray-200 dark:bg-gray-700"></div>
+                        <span className="px-3 text-xs text-gray-400 dark:text-gray-500">
+                            OR
+                        </span>
+                        <div className="flex-1 h-px bg-gray-200 dark:bg-gray-700"></div>
                     </motion.div>
 
-                    {/* Google */}
-                    <motion.div variants={item} whileTap={{ scale: 0.97 }}>
+                   
+                    <motion.div whileTap={{ scale: 0.97 }}>
                         <Button
                             onClick={handleGoogleLogin}
                             variant="secondary"
-                            className="w-full flex items-center justify-center gap-2 border hover:bg-gray-50"
+                            className="w-full flex items-center justify-center gap-2 border dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-800"
                         >
                             <FcGoogle size={20} />
                             Continue with Google
                         </Button>
                     </motion.div>
 
-                    {/* Footer */}
-                    <motion.p variants={item} className="text-center text-xs sm:text-sm text-gray-500 mt-6">
+                 
+                    <motion.p className="text-center text-xs sm:text-sm text-gray-500 dark:text-gray-400 mt-6">
                         Already have an account?{" "}
                         <Link
                             href="/login"
-                            className="text-black font-medium hover:underline"
+                            className="text-black dark:text-white font-medium hover:underline"
                         >
                             Login
                         </Link>

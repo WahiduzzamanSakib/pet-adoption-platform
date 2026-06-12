@@ -55,19 +55,20 @@ const cardVariants = {
 export default function PetCareTips() {
   return (
     <section className="mb-12">
-      {/* Section Title */}
+
+     
       <motion.div
         initial={{ opacity: 0, y: -25 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }}
         transition={{ duration: 0.6 }}
       >
-        <h2 className="text-3xl font-bold mb-6 border-b pb-3 text-slate-800">
+        <h2 className="text-3xl font-bold mb-6 border-b pb-3 text-slate-800 dark:text-slate-100 border-slate-200 dark:border-slate-700">
           Pet Care Tips
         </h2>
       </motion.div>
 
-      {/* Cards */}
+     
       <motion.div
         variants={containerVariants}
         initial="hidden"
@@ -89,21 +90,23 @@ export default function PetCareTips() {
             }}
             className="
               group relative overflow-hidden
-              bg-white border border-slate-200
+              bg-white dark:bg-slate-800
+              border border-slate-200 dark:border-slate-700
               rounded-xl p-5
               shadow-sm hover:shadow-lg
+              transition-colors duration-300
             "
           >
-            {/* Hover Glow */}
+         
             <motion.div
-              className="absolute inset-0 bg-gradient-to-r from-emerald-50 to-transparent"
+              className="absolute inset-0 bg-gradient-to-r from-emerald-50 to-transparent dark:from-emerald-900/20"
               initial={{ opacity: 0 }}
               whileHover={{ opacity: 1 }}
               transition={{ duration: 0.3 }}
             />
 
             <div className="relative flex items-start gap-3">
-              {/* Icon */}
+            
               <motion.div
                 whileHover={{
                   scale: 1.2,
@@ -118,13 +121,13 @@ export default function PetCareTips() {
                 {item.icon}
               </motion.div>
 
-              {/* Content */}
+             
               <div>
-                <span className="text-xs font-semibold tracking-wide text-emerald-600 uppercase">
+                <span className="text-xs font-semibold tracking-wide text-emerald-600 dark:text-emerald-400 uppercase">
                   {item.category}
                 </span>
 
-                <p className="text-slate-700 mt-1 leading-relaxed">
+                <p className="text-slate-700 dark:text-slate-300 mt-1 leading-relaxed">
                   {item.tip}
                 </p>
               </div>

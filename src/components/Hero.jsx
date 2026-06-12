@@ -27,7 +27,7 @@ export default function Hero() {
     }
   };
 
-  // Prevent hydration mismatch flash
+ 
   if (!mounted) {
     return <section className="min-h-[85vh] bg-white dark:bg-slate-900" />;
   }

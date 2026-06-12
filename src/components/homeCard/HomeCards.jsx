@@ -1,4 +1,3 @@
-
 import Link from "next/link";
 import React from "react";
 import {
@@ -8,12 +7,10 @@ import {
 } from "react-icons/fa";
 import { MdHealthAndSafety } from "react-icons/md";
 
-const HomeCards =  ({pets}) => {
-  
-
+const HomeCards = ({ pets }) => {
   return (
     <div className="max-w-7xl mx-auto px-4 py-10">
-      <h1 className="text-3xl font-bold text-center mb-10">
+      <h1 className="text-3xl font-bold text-center mb-10 text-gray-900 dark:text-white">
         🐾 Available Pets for Adoption
       </h1>
 
@@ -21,7 +18,7 @@ const HomeCards =  ({pets}) => {
         {pets.slice(0, 6).map((pet) => (
           <div
             key={pet._id}
-            className="bg-white rounded-2xl shadow-md border overflow-hidden
+            className="bg-white dark:bg-gray-800 rounded-2xl shadow-md border dark:border-gray-700 overflow-hidden
             transition-all duration-300 hover:shadow-2xl hover:-translate-y-2 hover:scale-[1.02]"
           >
             {/* Image */}
@@ -38,17 +35,17 @@ const HomeCards =  ({pets}) => {
 
             {/* Content */}
             <div className="p-5 space-y-3">
-              <h2 className="text-xl font-bold flex items-center gap-2">
+              <h2 className="text-xl font-bold flex items-center gap-2 text-gray-900 dark:text-white">
                 <FaPaw className="text-pink-500" />
                 {pet.petName}
               </h2>
 
-              <p className="text-gray-600 text-sm line-clamp-2">
+              <p className="text-gray-600 dark:text-gray-300 text-sm line-clamp-2">
                 {pet.description}
               </p>
 
               {/* Info Grid */}
-              <div className="space-y-2 text-sm text-gray-700">
+              <div className="space-y-2 text-sm text-gray-700 dark:text-gray-300">
                 <p className="flex items-center gap-2 font-bold">
                   <FaVenusMars className="text-blue-500" />
                   {pet.gender}

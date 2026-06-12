@@ -31,7 +31,7 @@ const itemVariants = {
 
 export default function PetHeroBanner() {
   return (
-    <section className="relative bg-gradient-to-r from-orange-50 via-amber-50 to-yellow-100 overflow-hidden">
+    <section className="relative bg-gradient-to-r from-orange-50 via-amber-50 to-yellow-100 dark:from-gray-900 dark:via-gray-900 dark:to-gray-800 overflow-hidden">
       {/* Animated Background Dot */}
       <motion.div
         animate={{
@@ -42,7 +42,7 @@ export default function PetHeroBanner() {
           duration: 3,
           repeat: Infinity,
         }}
-        className="absolute top-10 left-10 w-4 h-4 bg-orange-300 rounded-full"
+        className="absolute top-10 left-10 w-4 h-4 bg-orange-300 dark:bg-orange-500 rounded-full"
       />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 md:py-24 flex flex-col md:flex-row items-center justify-between gap-12">
@@ -59,7 +59,7 @@ export default function PetHeroBanner() {
             whileHover={{
               scale: 1.05,
             }}
-            className="inline-flex items-center gap-2 px-4 py-1.5 text-xs font-semibold uppercase tracking-wider text-orange-800 bg-orange-200/50 rounded-full"
+            className="inline-flex items-center gap-2 px-4 py-1.5 text-xs font-semibold uppercase tracking-wider text-orange-800 dark:text-orange-200 bg-orange-200/50 dark:bg-gray-800 rounded-full"
           >
             <FaHeart className="text-orange-600" />
             Adopt • Rescue • Love
@@ -68,7 +68,7 @@ export default function PetHeroBanner() {
           {/* Heading */}
           <motion.h1
             variants={itemVariants}
-            className="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-slate-900 leading-tight"
+            className="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-slate-900 dark:text-white leading-tight"
           >
             Find Your New
             <span className="text-orange-600"> Best Friend</span>
@@ -77,7 +77,7 @@ export default function PetHeroBanner() {
           {/* Description */}
           <motion.p
             variants={itemVariants}
-            className="text-lg text-slate-600 md:max-w-xl"
+            className="text-lg text-slate-600 dark:text-gray-300 md:max-w-xl"
           >
             Discover loving dogs, cats, birds, rabbits, and other pets
             waiting for their forever homes. Give a rescued pet a second
@@ -123,7 +123,7 @@ export default function PetHeroBanner() {
               >
                 <Link
                   href="/add-pet"
-                  className="group inline-flex items-center justify-center gap-2 px-7 py-3.5 rounded-2xl border-2 border-orange-500 bg-white text-orange-600 font-semibold shadow-md"
+                  className="group inline-flex items-center justify-center gap-2 px-7 py-3.5 rounded-2xl border-2 border-orange-500 bg-white dark:bg-gray-800 text-orange-600 dark:text-orange-300 font-semibold shadow-md"
                 >
                   <motion.div
                     whileHover={{ rotate: 90 }}
@@ -165,7 +165,7 @@ export default function PetHeroBanner() {
               duration: 4,
               repeat: Infinity,
             }}
-            className="absolute inset-0 bg-gradient-to-tr from-orange-400 to-amber-300 rounded-full blur-3xl"
+            className="absolute inset-0 bg-gradient-to-tr from-orange-400 to-amber-300 dark:from-gray-700 dark:to-gray-900 rounded-full blur-3xl"
           />
 
           {/* Floating Image */}

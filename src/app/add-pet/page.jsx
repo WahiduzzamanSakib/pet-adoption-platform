@@ -25,7 +25,6 @@ const router = useRouter();
     const { data: session } = authClient.useSession();
     const user = session?.user;
 
-
     const handleSubmit = async (e) => {
         e.preventDefault();
 
@@ -55,32 +54,28 @@ const router = useRouter();
         };
     };
 
-
-
     return (
-        <div className="min-h-screen w-full bg-default-50/50 flex items-center justify-center p-4 md:p-8">
-            <Surface className="w-full max-w-4xl rounded-2xl border border-default-200 bg-background p-6 shadow-sm md:p-10">
+        <div className="min-h-screen w-full bg-default-50/50 dark:bg-gray-950 flex items-center justify-center p-4 md:p-8">
+            <Surface className="w-full max-w-4xl rounded-2xl border border-default-200 dark:border-gray-700 bg-background dark:bg-gray-900 p-6 shadow-sm md:p-10">
 
                 <form onSubmit={handleSubmit} className="space-y-8">
 
                     <Fieldset className="w-full space-y-6">
                         <div>
-                            <Fieldset.Legend className="text-2xl font-bold tracking-tight text-foreground md:text-3xl">
+                            <Fieldset.Legend className="text-2xl font-bold tracking-tight text-foreground dark:text-white md:text-3xl">
                                 Create Pet Listing
                             </Fieldset.Legend>
-                            <Description className="text-sm text-muted-foreground mt-1">
+                            <Description className="text-sm text-muted-foreground dark:text-gray-300 mt-1">
                                 Provide accurate details about the pet to help them find their permanent home.
                             </Description>
                         </div>
 
-                        <hr className="border-default-100" />
-
+                        <hr className="border-default-100 dark:border-gray-700" />
 
                         <Fieldset.Group className="grid grid-cols-1 gap-x-8 gap-y-6 md:grid-cols-2">
 
-
                             <div className="space-y-5">
-                                <h3 className="text-sm font-semibold uppercase tracking-wider text-default-400">
+                                <h3 className="text-sm font-semibold uppercase tracking-wider text-default-400 dark:text-gray-400">
                                     Pet Characteristics
                                 </h3>
 
@@ -92,8 +87,7 @@ const router = useRouter();
 
                                 {/* species */}
                                 <div className="w-full space-y-1">
-                                    {/* Label */}
-                                    <label className="text-sm font-semibold text-gray-700">
+                                    <label className="text-sm font-semibold text-gray-700 dark:text-gray-300">
                                         Species
                                     </label>
 
@@ -102,17 +96,7 @@ const router = useRouter();
                                             name="Species"
                                             required
                                             defaultValue=""
-                                            className=" font-bold
-                                        w-full appearance-none
-                                        rounded-lg border border-gray-300
-                                        bg-white px-3 py-2.5 pr-10
-                                        text-sm text-gray-700
-                                        shadow-sm
-                                        transition
-                                        focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200
-                                        hover:border-gray-400
-                                         outline-none
-                                      "
+                                            className="font-bold w-full appearance-none rounded-lg border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-800 px-3 py-2.5 pr-10 text-sm text-gray-700 dark:text-gray-200 shadow-sm transition focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 dark:focus:ring-gray-700 hover:border-gray-400 dark:hover:border-gray-500 outline-none"
                                         >
                                             <option value="" disabled>
                                                 Select your Species
@@ -124,11 +108,9 @@ const router = useRouter();
                                             <option value="other">Other</option>
                                         </select>
 
-                                        {/* Icon */}
-                                        <HiChevronDown className="pointer-events-none absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 text-lg" />
+                                        <HiChevronDown className="pointer-events-none absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 dark:text-gray-500 text-lg" />
                                     </div>
 
-                                    {/* Error */}
                                     <p className="text-xs text-red-500">
                                         <FieldError />
                                     </p>
@@ -147,11 +129,10 @@ const router = useRouter();
                                         <FieldError />
                                     </TextField>
 
-                                    {/* Gander */}
+                                    {/* Gender */}
                                     <div className="w-full space-y-1">
-                                        {/* Label */}
-                                        <label className="text-sm font-semibold text-gray-700">
-                                            Gander
+                                        <label className="text-sm font-semibold text-gray-700 dark:text-gray-300">
+                                            Gender
                                         </label>
 
                                         <div className="relative">
@@ -159,41 +140,28 @@ const router = useRouter();
                                                 name="gender"
                                                 required
                                                 defaultValue=""
-                                                className=" font-bold
-                                        w-full appearance-none
-                                        rounded-lg border border-gray-300
-                                        bg-white px-3 py-2.5 pr-10
-                                        text-sm text-gray-700
-                                        shadow-sm
-                                        transition
-                                        focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200
-                                        hover:border-gray-400
-                                         outline-none
-                                      "
+                                                className="font-bold w-full appearance-none rounded-lg border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-800 px-3 py-2.5 pr-10 text-sm text-gray-700 dark:text-gray-200 shadow-sm transition focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 dark:focus:ring-gray-700 hover:border-gray-400 dark:hover:border-gray-500 outline-none"
                                             >
                                                 <option value="" disabled>
-                                                    Select Gander
+                                                    Select Gender
                                                 </option>
                                                 <option value="male">Male</option>
                                                 <option value="female">Female</option>
                                             </select>
 
-                                            {/* Icon */}
-                                            <HiChevronDown className="pointer-events-none absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 text-lg" />
+                                            <HiChevronDown className="pointer-events-none absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 dark:text-gray-500 text-lg" />
                                         </div>
 
-                                        {/* Error */}
                                         <p className="text-xs text-red-500">
                                             <FieldError />
                                         </p>
                                     </div>
                                 </div>
-
                             </div>
 
-                            {/* SECTION 2: Health & Logistics */}
+                            {/* Health & Logistics */}
                             <div className="space-y-5">
-                                <h3 className="text-sm font-semibold uppercase tracking-wider text-default-400">
+                                <h3 className="text-sm font-semibold uppercase tracking-wider text-default-400 dark:text-gray-400">
                                     Health & Logistics
                                 </h3>
 
@@ -203,10 +171,9 @@ const router = useRouter();
                                     <FieldError />
                                 </TextField>
 
-                                {/* Vaccination Status */}
+                                {/* Vaccination */}
                                 <div className="w-full space-y-1">
-                                    {/* Label */}
-                                    <label className="text-sm font-semibold text-gray-700">
+                                    <label className="text-sm font-semibold text-gray-700 dark:text-gray-300">
                                         Vaccination Status
                                     </label>
 
@@ -215,17 +182,7 @@ const router = useRouter();
                                             name="vaccinationStatus"
                                             required
                                             defaultValue=""
-                                            className=" font-bold
-                                        w-full appearance-none
-                                        rounded-lg border border-gray-300
-                                        bg-white px-3 py-2.5 pr-10
-                                        text-sm text-gray-700
-                                        shadow-sm
-                                        transition
-                                        focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200
-                                        hover:border-gray-400
-                                         outline-none
-                                      "
+                                            className="font-bold w-full appearance-none rounded-lg border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-800 px-3 py-2.5 pr-10 text-sm text-gray-700 dark:text-gray-200 shadow-sm transition focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 dark:focus:ring-gray-700 hover:border-gray-400 dark:hover:border-gray-500 outline-none"
                                         >
                                             <option value="" disabled>
                                                 Select your status
@@ -235,17 +192,14 @@ const router = useRouter();
                                             <option value="not-vaccinated">Not Vaccinated</option>
                                         </select>
 
-                                        {/* Icon */}
-                                        <HiChevronDown className="pointer-events-none absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 text-lg" />
+                                        <HiChevronDown className="pointer-events-none absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 dark:text-gray-500 text-lg" />
                                     </div>
 
-                                    {/* Error */}
                                     <p className="text-xs text-red-500">
                                         <FieldError />
                                     </p>
                                 </div>
 
-                                {/* Location */}
                                 <TextField name="location">
                                     <Label>Location</Label>
                                     <Input required placeholder="e.g., New York, NY" variant="secondary" />
@@ -254,35 +208,21 @@ const router = useRouter();
 
                                 <TextField name="adoptionFee">
                                     <Label>Adoption Fee ($)</Label>
-                                    <Input
-                                        required
-                                        type="number"
-                                        min="0"
-                                        placeholder="0 for free adoption"
-                                        variant="secondary"
-                                    />
+                                    <Input required type="number" min="0" placeholder="0 for free adoption" variant="secondary" />
                                     <FieldError />
                                 </TextField>
-
                             </div>
+
                             <div>
                                 <TextField name="imageUrl" type="url">
                                     <Label>Image URL</Label>
-                                    <Input
-                                        required
-                                        placeholder="Pet Image url"
-                                        variant="secondary"
-                                    />
+                                    <Input required placeholder="Pet Image url" variant="secondary" />
                                     <FieldError />
                                 </TextField>
                             </div>
 
-
                             <div className="col-span-1 md:col-span-2 space-y-5 pt-4">
-                                <hr className="border-default-100" />
-
-
-
+                                <hr className="border-default-100 dark:border-gray-700" />
 
                                 <TextField name="description">
                                     <Label>Description</Label>
@@ -301,27 +241,26 @@ const router = useRouter();
                                         value={user?.email || ""}
                                         readOnly
                                         disabled
-                                        className="opacity-60 cursor-not-allowed bg-default-100"
+                                        className="opacity-60 cursor-not-allowed bg-default-100 dark:bg-gray-800 dark:text-gray-300"
                                         variant="secondary"
                                     />
-                                    <Description className="text-xs text-default-400">
+                                    <Description className="text-xs text-default-400 dark:text-gray-400">
                                         This verified email is tied to your account profile.
                                     </Description>
                                 </TextField>
                             </div>
                         </Fieldset.Group>
 
-                        <hr className="border-default-100 pt-2" />
+                        <hr className="border-default-100 dark:border-gray-700 pt-2" />
 
-                        {/* Action Buttons */}
                         <Fieldset.Actions className="flex flex-col-reverse sm:flex-row sm:justify-end gap-3 pt-2">
 
                             <Button
                                 type="submit"
                                 variant="secondary"
-                                className="w-full sm:w-auto justify-center gap-2 font-medium shadow-sm"
+                                className="w-full sm:w-auto justify-center gap-2 font-medium shadow-sm dark:bg-gray-800 dark:text-white"
                             >
-                                <MdOutlineNoteAdd  className="w-4 h-4" />
+                                <MdOutlineNoteAdd className="w-4 h-4" />
                                 Add pet
                             </Button>
                         </Fieldset.Actions>

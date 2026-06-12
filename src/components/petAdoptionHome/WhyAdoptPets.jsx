@@ -53,7 +53,8 @@ const cardVariants = {
 export default function WhyAdoptPets() {
   return (
     <section className="mb-24 px-4 md:px-0">
-      {/* Heading */}
+
+    
       <motion.div
         initial={{ opacity: 0, y: -30 }}
         whileInView={{ opacity: 1, y: 0 }}
@@ -66,17 +67,16 @@ export default function WhyAdoptPets() {
           whileInView={{ scale: 1 }}
           viewport={{ once: true }}
           transition={{ duration: 0.5 }}
-          className="text-2xl md:text-4xl font-extrabold text-slate-800"
+          className="text-2xl md:text-4xl font-extrabold text-slate-800 dark:text-slate-100"
         >
           Why Adopt a Pet?
         </motion.h2>
 
-        <p className="text-slate-500 mt-3">
+        <p className="text-slate-500 dark:text-slate-300 mt-3">
           Give love, care, and a forever home to a pet in need
         </p>
       </motion.div>
 
-      {/* Cards */}
       <motion.div
         variants={containerVariants}
         initial="hidden"
@@ -95,24 +95,26 @@ export default function WhyAdoptPets() {
             transition={{ type: "spring", stiffness: 300 }}
             className="
               group relative overflow-hidden
-              bg-white
-              border border-slate-100
+              bg-white dark:bg-slate-800
+              border border-slate-100 dark:border-slate-700
               rounded-2xl
               p-7
               shadow-sm
               hover:shadow-2xl
+              transition-colors duration-300
             "
           >
-            {/* Background Glow */}
+          
             <motion.div
-              className="absolute inset-0 bg-gradient-to-br from-blue-50 via-white to-emerald-50"
+              className="absolute inset-0 bg-gradient-to-br from-blue-50 via-white to-emerald-50 dark:from-blue-900/20 dark:via-slate-800 dark:to-emerald-900/20"
               initial={{ opacity: 0 }}
               whileHover={{ opacity: 1 }}
               transition={{ duration: 0.3 }}
             />
 
             <div className="relative">
-              {/* Icon */}
+
+             
               <motion.div
                 whileHover={{
                   scale: 1.15,
@@ -126,36 +128,32 @@ export default function WhyAdoptPets() {
                   w-14 h-14 mb-5
                   flex items-center justify-center
                   rounded-2xl
-                  bg-gradient-to-r
-                  from-blue-500
-                  to-emerald-500
-                  text-2xl
-                  text-white
+                  bg-gradient-to-r from-blue-500 to-emerald-500
+                  text-2xl text-white
                   shadow-md
                 "
               >
                 {icons[index]}
               </motion.div>
 
-              {/* Title */}
+             
               <motion.h3
                 whileHover={{ x: 5 }}
                 className="
-                  text-xl
-                  font-bold
-                  mb-2
-                  text-slate-900
-                  group-hover:text-blue-600
+                  text-xl font-bold mb-2
+                  text-slate-900 dark:text-slate-100
+                  group-hover:text-blue-600 dark:group-hover:text-blue-400
                   transition-colors
                 "
               >
                 {item.title}
               </motion.h3>
 
-              {/* Description */}
-              <p className="text-slate-600 leading-relaxed">
+             
+              <p className="text-slate-600 dark:text-slate-300 leading-relaxed">
                 {item.description}
               </p>
+
             </div>
           </motion.div>
         ))}

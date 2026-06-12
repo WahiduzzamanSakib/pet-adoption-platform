@@ -29,12 +29,12 @@ const faqs = [
 
 export default function AdditionalSection () {
   return (
-    <div className="bg-[#FAFAFA] min-h-screen text-slate-800">
+    <div className="bg-[#FAFAFA] dark:bg-gray-950 min-h-screen text-slate-800 dark:text-gray-200">
 
       <PartnerShelters partnerShelters={partnerShelters} />
 
       <div className="max-w-6xl mx-auto px-6">
-        <div className="h-px bg-slate-200" />
+        <div className="h-px bg-slate-200 dark:bg-gray-700" />
       </div>
 
       <FAQSection faqs={faqs} />

@@ -50,38 +50,48 @@ const reviews = [
 export default function SuccessStories() {
   return (
     <section className="relative overflow-hidden py-24">
-      {/* Background */}
-      <div className="absolute inset-0 -z-10 bg-gradient-to-b from-emerald-50 via-white to-emerald-50" />
 
-      {/* Header */}
+      
+      <div className="absolute inset-0 -z-10 bg-gradient-to-b from-emerald-50 via-white to-emerald-50 dark:from-slate-900 dark:via-slate-900 dark:to-slate-800" />
+
+   
       <div className="mb-14 text-center">
         <div className="mb-4 flex items-center justify-center gap-3">
-          <FaPaw className="text-3xl text-emerald-500" />
-          <h2 className="text-4xl font-bold text-slate-800 md:text-5xl">
+          <FaPaw className="text-3xl text-emerald-500 dark:text-emerald-400" />
+
+          <h2 className="text-4xl font-bold text-slate-800 dark:text-slate-100 md:text-5xl">
             Happy Pet Parents
           </h2>
         </div>
 
-        <p className="mx-auto max-w-2xl text-slate-500">
+        <p className="mx-auto max-w-2xl text-slate-500 dark:text-slate-300">
           Real stories from families who found their perfect companion
           through adoption.
         </p>
 
-        <div className="mt-6 inline-flex items-center gap-2 rounded-full bg-emerald-100 px-4 py-2 text-sm font-medium text-emerald-700">
+        <div className="mt-6 inline-flex items-center gap-2 rounded-full bg-emerald-100 dark:bg-emerald-900/30 px-4 py-2 text-sm font-medium text-emerald-700 dark:text-emerald-300">
           <FaHeart />
           4.9 / 5 Average Adoption Experience
         </div>
       </div>
 
-      {/* Slider */}
+   
       <div className="group overflow-hidden">
         <div className="flex w-max gap-8 animate-[marquee_25s_linear_infinite] group-hover:[animation-play-state:paused]">
+
           {[...reviews, ...reviews].map((review, index) => (
             <div
               key={index}
-              className="w-[320px] flex-shrink-0 rounded-3xl border border-white/40 bg-white/80 p-6 shadow-lg backdrop-blur-md transition-all duration-300 hover:-translate-y-3 hover:shadow-2xl"
+              className="
+                w-[320px] flex-shrink-0 rounded-3xl
+                border border-white/40 dark:border-slate-700
+                bg-white/80 dark:bg-slate-800/80
+                p-6 shadow-lg backdrop-blur-md
+                transition-all duration-300
+                hover:-translate-y-3 hover:shadow-2xl
+              "
             >
-              {/* User */}
+            
               <div className="mb-5 flex items-center gap-4">
                 <div className="relative">
                   <Image
@@ -89,7 +99,7 @@ export default function SuccessStories() {
                     alt={review.pet}
                     width={70}
                     height={70}
-                    className="h-16 w-16 rounded-full object-cover ring-4 ring-emerald-100"
+                    className="h-16 w-16 rounded-full object-cover ring-4 ring-emerald-100 dark:ring-emerald-900"
                   />
 
                   <span className="absolute -bottom-1 -right-1 rounded-full bg-emerald-500 p-1.5 text-white">
@@ -98,24 +108,24 @@ export default function SuccessStories() {
                 </div>
 
                 <div>
-                  <h3 className="font-bold text-slate-800">
+                  <h3 className="font-bold text-slate-800 dark:text-slate-100">
                     {review.name}
                   </h3>
 
-                  <p className="text-sm text-emerald-600">
+                  <p className="text-sm text-emerald-600 dark:text-emerald-400">
                     Adopted {review.pet}
                   </p>
                 </div>
               </div>
 
-              {/* Quote */}
-              <FaQuoteLeft className="mb-3 text-3xl text-emerald-200" />
+             
+              <FaQuoteLeft className="mb-3 text-3xl text-emerald-200 dark:text-emerald-500/40" />
 
-              <p className="mb-6 text-sm leading-relaxed text-slate-600">
+              <p className="mb-6 text-sm leading-relaxed text-slate-600 dark:text-slate-300">
                 {review.review}
               </p>
 
-              {/* Footer */}
+             
               <div className="flex items-center justify-between">
                 <div className="flex gap-1">
                   {[...Array(5)].map((_, i) => (
@@ -127,12 +137,13 @@ export default function SuccessStories() {
                   ))}
                 </div>
 
-                <span className="rounded-full bg-emerald-50 px-3 py-1 text-xs font-medium text-emerald-700">
+                <span className="rounded-full bg-emerald-50 dark:bg-emerald-900/30 px-3 py-1 text-xs font-medium text-emerald-700 dark:text-emerald-300">
                   Verified Adoption
                 </span>
               </div>
             </div>
           ))}
+
         </div>
       </div>
     </section>

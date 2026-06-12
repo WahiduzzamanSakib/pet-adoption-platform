@@ -16,7 +16,6 @@ export default function DetailsPage() {
   const [pet, setPet] = useState(null);
   const [loading, setLoading] = useState(true);
 
-  // Fetch pet data
   useEffect(() => {
     const loadData = async () => {
       try {
@@ -36,10 +35,9 @@ export default function DetailsPage() {
     if (id) loadData();
   }, [id]);
 
-  // Loading UI
   if (loading || sessionLoading) {
     return (
-      <div className="min-h-screen flex items-center justify-center">
+      <div className="min-h-screen flex items-center justify-center bg-white dark:bg-gray-950">
         <motion.div
           className="w-12 h-12 border-4 border-blue-500 border-t-transparent rounded-full"
           animate={{ rotate: 360 }}
@@ -53,16 +51,14 @@ export default function DetailsPage() {
     );
   }
 
-  // No pet found
   if (!pet) {
     return (
-      <div className="flex items-center justify-center min-h-screen">
+      <div className="flex items-center justify-center min-h-screen bg-white dark:bg-gray-950">
         <h1 className="text-red-500 text-xl">No Data Found</h1>
       </div>
     );
   }
 
-  // ✅ FIXED OWNER CHECK (BASED ON YOUR REAL DATA)
   const userId = session?.user?.id;
 
   const isOwner =
@@ -71,13 +67,13 @@ export default function DetailsPage() {
     String(userId) === String(pet.userId);
 
   return (
-    <div className="max-w-6xl mx-auto py-10 px-4">
-      <motion.div className="bg-white rounded-2xl shadow-lg overflow-hidden">
+    <div className="max-w-6xl mx-auto py-10 px-4 bg-white dark:bg-gray-950 text-gray-900 dark:text-white min-h-screen">
+      <motion.div className="bg-white dark:bg-gray-900 rounded-2xl shadow-lg overflow-hidden border dark:border-gray-800">
         <div className="grid md:grid-cols-2">
 
           {/* Image */}
           <motion.div
-            className="bg-gray-50 flex items-center justify-center p-6"
+            className="bg-gray-50 dark:bg-gray-800 flex items-center justify-center p-6"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
@@ -100,7 +96,9 @@ export default function DetailsPage() {
 
           {/* Details */}
           <div className="p-6 md:p-10 flex flex-col gap-6">
-            <h1 className="text-3xl font-bold">{pet.petName}</h1>
+            <h1 className="text-3xl font-bold text-gray-900 dark:text-white">
+              {pet.petName}
+            </h1>
 
             <div className="flex gap-2 flex-wrap">
               <Chip color="primary">{pet.Species}</Chip>
@@ -108,25 +106,28 @@ export default function DetailsPage() {
               <Chip color="warning">{pet.vaccinationStatus}</Chip>
             </div>
 
-            <div className="grid grid-cols-2 gap-3 text-sm bg-gray-50 p-4 rounded-xl">
+            <div className="grid grid-cols-2 gap-3 text-sm bg-gray-50 dark:bg-gray-800 p-4 rounded-xl text-gray-800 dark:text-gray-200">
               <p><b>Breed:</b> {pet.breed}</p>
               <p><b>Age:</b> {pet.age}</p>
               <p><b>Gender:</b> {pet.gender}</p>
               <p><b>Location:</b> {pet.location}</p>
               <p className="col-span-2">
                 <b>Adoption Fee:</b>{" "}
-                <span className="text-green-600 font-semibold">
+                <span className="text-green-600 dark:text-green-400 font-semibold">
                   ${pet.adoptionFee}
                 </span>
               </p>
             </div>
 
             <div>
-              <h3 className="font-semibold text-lg mb-2">About</h3>
-              <p className="text-gray-600">{pet.description}</p>
+              <h3 className="font-semibold text-lg mb-2 text-gray-900 dark:text-white">
+                About
+              </h3>
+              <p className="text-gray-600 dark:text-gray-300">
+                {pet.description}
+              </p>
             </div>
 
-            {/* ADOPT BUTTON (FIXED) */}
             <Button
               color="secondary"
               className={`w-full font-semibold text-white ${isOwner ? "opacity-50 cursor-not-allowed" : ""
@@ -135,13 +136,10 @@ export default function DetailsPage() {
               disabled={isOwner}
               onClick={() => {
                 if (isOwner) return;
-
                 console.log("Adoption request sent");
               }}
             >
-              {isOwner
-                ? "Owner this pet 🐶"
-                : "Adopt Now 🐾"}
+              {isOwner ? "Owner this pet 🐶" : "Adopt Now 🐾"}
             </Button>
           </div>
         </div>

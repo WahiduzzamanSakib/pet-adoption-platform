@@ -87,18 +87,15 @@ const SignInPage = () => {
     };
 
     return (
-        <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-gray-50 to-gray-100 px-4 py-6">
-
-            {/* Card Animation */}
+        <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-gray-50 to-gray-100 dark:from-gray-950 dark:to-gray-900 px-4 py-6">
             <motion.div
                 variants={container}
                 initial="hidden"
                 animate="show"
                 className="w-full max-w-md sm:max-w-lg md:max-w-xl lg:max-w-2xl"
             >
-                <Card className="p-5 sm:p-6 md:p-8 shadow-xl rounded-2xl bg-white">
+                <Card className="p-5 sm:p-6 md:p-8 shadow-xl rounded-2xl bg-white dark:bg-gray-900 border dark:border-gray-800">
 
-                    {/* Logo */}
                     <motion.div
                         variants={item}
                         className="flex flex-col items-center mb-6"
@@ -111,11 +108,11 @@ const SignInPage = () => {
                             className="rounded-full"
                         />
 
-                        <h1 className="text-2xl font-bold mt-4">
+                        <h1 className="text-2xl font-bold mt-4 text-gray-900 dark:text-white">
                             Welcome Back
                         </h1>
 
-                        <p className="text-sm text-gray-500 text-center mt-2">
+                        <p className="text-sm text-gray-500 dark:text-gray-300 text-center mt-2">
                             Sign in to continue your pet adoption journey 🐾
                         </p>
                     </motion.div>
@@ -125,52 +122,59 @@ const SignInPage = () => {
                         <motion.div variants={item}>
                             <TextField name="email" type="email" isRequired>
                                 <Label>Email</Label>
-                                <Input placeholder="john@example.com" />
+                                <Input
+                                    placeholder="john@example.com"
+                                    className="dark:bg-gray-800 dark:text-white"
+                                />
                             </TextField>
                         </motion.div>
 
                         <motion.div variants={item}>
                             <TextField name="password" type="password" isRequired>
                                 <Label>Password</Label>
-                                <Input placeholder="Enter your password" />
+                                <Input
+                                    placeholder="Enter your password"
+                                    className="dark:bg-gray-800 dark:text-white"
+                                />
                             </TextField>
                         </motion.div>
 
                         <motion.div variants={item}>
                             <Button
                                 type="submit"
-                                className="w-full bg-black text-white hover:bg-gray-800"
+                                className="w-full bg-black text-white hover:bg-gray-800 dark:bg-gray-700 dark:hover:bg-gray-600"
                             >
                                 Login
                             </Button>
                         </motion.div>
                     </Form>
 
-                    {/* Divider */}
+                   
                     <motion.div variants={item} className="flex items-center my-3">
-                        <div className="flex-1 border-t"></div>
-                        <span className="px-3 text-gray-400 text-sm">OR</span>
-                        <div className="flex-1 border-t"></div>
+                        <div className="flex-1 border-t dark:border-gray-700"></div>
+                        <span className="px-3 text-gray-400 dark:text-gray-500 text-sm">
+                            OR
+                        </span>
+                        <div className="flex-1 border-t dark:border-gray-700"></div>
                     </motion.div>
 
-                    {/* Google Login */}
                     <motion.div variants={item}>
                         <Button
                             onClick={handleGoogleLogin}
                             variant="secondary"
-                            className="w-full flex items-center justify-center gap-2 border hover:bg-gray-50"
+                            className="w-full flex items-center justify-center gap-2 border dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-800"
                         >
                             <FcGoogle size={20} />
                             Continue with Google
                         </Button>
                     </motion.div>
 
-                    {/* Register Link */}
-                    <motion.p variants={item} className="text-center text-sm text-gray-500 mt-3">
+                   
+                    <motion.p variants={item} className="text-center text-sm text-gray-500 dark:text-gray-400 mt-3">
                         Don't have an account?{" "}
                         <Link
                             href="/signup"
-                            className="font-medium text-black hover:underline ml-2"
+                            className="font-medium text-black dark:text-white hover:underline ml-2"
                         >
                             Register
                         </Link>

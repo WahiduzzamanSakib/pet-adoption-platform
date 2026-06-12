@@ -30,7 +30,8 @@ const cardVariants = {
 export default function PartnerShelters({ partnerShelters }) {
   return (
     <section className="max-w-6xl mx-auto py-20 px-6">
-      {/* Header */}
+
+     
       <motion.div
         initial={{ opacity: 0, y: -30 }}
         whileInView={{ opacity: 1, y: 0 }}
@@ -38,20 +39,20 @@ export default function PartnerShelters({ partnerShelters }) {
         transition={{ duration: 0.6 }}
         className="text-center max-w-2xl mx-auto mb-16"
       >
-        <span className="text-xs font-bold tracking-widest text-orange-600 uppercase bg-orange-50 px-3 py-1.5 rounded-full">
+        <span className="text-xs font-bold tracking-widest text-orange-600 uppercase bg-orange-50 dark:bg-orange-900/20 px-3 py-1.5 rounded-full">
           Our Network
         </span>
 
-        <h2 className="text-3xl md:text-4xl font-extrabold text-slate-900 mt-4">
+        <h2 className="text-3xl md:text-4xl font-extrabold text-slate-900 dark:text-white mt-4">
           Trusted Partner Shelters
         </h2>
 
-        <p className="text-base text-slate-500 mt-3">
+        <p className="text-base text-slate-500 dark:text-gray-300 mt-3">
           Verified animal rescue organizations working with us nationwide.
         </p>
       </motion.div>
 
-      {/* Shelter Grid */}
+     
       <motion.div
         variants={containerVariants}
         initial="hidden"
@@ -72,15 +73,17 @@ export default function PartnerShelters({ partnerShelters }) {
               stiffness: 300,
             }}
             className="
-              group bg-white p-8 rounded-2xl
-              border border-slate-100
+              group p-8 rounded-2xl
+              bg-white dark:bg-gray-900
+              border border-slate-100 dark:border-gray-800
               shadow-sm hover:shadow-xl
-              hover:border-orange-400
+              hover:border-orange-400 dark:hover:border-orange-500
             "
           >
-            {/* Top Row */}
+          
             <div className="flex items-center justify-between mb-6">
-              {/* Logo */}
+
+             
               <motion.div
                 whileHover={{
                   scale: 1.15,
@@ -91,48 +94,49 @@ export default function PartnerShelters({ partnerShelters }) {
                   stiffness: 400,
                 }}
                 className="
-                  text-3xl bg-slate-50
-                  p-4 rounded-2xl
+                  text-3xl p-4 rounded-2xl
+                  bg-slate-50 dark:bg-gray-800
                 "
               >
                 {shelter.logo}
               </motion.div>
 
-              {/* Tier Badge */}
+             
               <motion.span
                 whileHover={{ scale: 1.08 }}
                 className={`text-[10px] font-bold uppercase px-2 py-1 rounded-md
                 ${
                   shelter.tier === "Premium Partner"
-                    ? "bg-emerald-50 text-emerald-700"
-                    : "bg-blue-50 text-blue-700"
+                    ? "bg-emerald-50 text-emerald-700 dark:bg-emerald-900/20 dark:text-emerald-400"
+                    : "bg-blue-50 text-blue-700 dark:bg-blue-900/20 dark:text-blue-400"
                 }`}
               >
                 {shelter.tier}
               </motion.span>
             </div>
 
-            {/* Shelter Name */}
+           
             <motion.h3
               whileHover={{ x: 5 }}
-              className="text-xl font-bold transition-colors group-hover:text-orange-600"
+              className="text-xl font-bold transition-colors group-hover:text-orange-600 dark:text-white"
             >
               {shelter.name}
             </motion.h3>
 
-            {/* Location */}
-            <p className="text-sm text-slate-400 flex items-center mt-2">
+           
+            <p className="text-sm text-slate-400 dark:text-gray-400 flex items-center mt-2">
               <FaMapMarkerAlt className="mr-2 text-orange-400" />
               {shelter.location}
             </p>
 
-            {/* Stats */}
-            <div className="mt-6 pt-6 border-t flex items-center justify-between">
-              <span className="text-xs text-slate-400 uppercase">
+            
+            <div className="mt-6 pt-6 border-t border-slate-100 dark:border-gray-800 flex items-center justify-between">
+
+              <span className="text-xs text-gray-500 dark:text-gray-500 uppercase">
                 Impact
               </span>
 
-              <span className="text-sm font-semibold flex items-center">
+              <span className="text-sm font-semibold flex items-center text-blue-400 dark:text-gray-300">
                 <motion.div
                   animate={{
                     scale: [1, 1.2, 1],
