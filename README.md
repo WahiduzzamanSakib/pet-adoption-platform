@@ -1,36 +1,114 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Pet Adoption Platform 🐾
 
-## Getting Started
+## Overview
 
-First, run the development server:
+Pet Adoption Platform is a modern full-stack web application built with the MERN Stack. The platform simplifies the pet adoption process by connecting pet owners, shelters, and potential adopters in a secure and user-friendly environment. Users can explore available pets, submit adoption requests, and track their application status, while pet owners can efficiently manage listings and adoption requests.
+
+## Live Demo
+
+🔗 **Live Website:** https://your-live-site-url.com
+
+## Key Features
+
+- Secure authentication using Email/Password and Google Sign-In
+- Browse and explore pets available for adoption
+- Advanced search and filtering by pet name and species
+- Detailed pet profiles with adoption request functionality
+- User dashboard for managing adoption requests
+- Pet owner dashboard for managing pet listings
+- Approve or reject adoption requests with adoption status control
+- JWT-based authentication with HTTP-only cookies for enhanced security
+- Responsive design optimized for mobile, tablet, and desktop devices
+- Custom 404 page, loading states, and toast notifications for improved user experience
+- Dark/Light theme support
+- Smooth UI animations using Framer Motion
+
+## Technology Stack
+
+### Frontend
+- React.js
+- React Router DOM
+- Tailwind CSS
+- HeroUI
+- React Hook Form
+- Google Authentication
+- React Toastify
+- Framer Motion
+- Dark-light Theme
+
+### Backend
+- Node.js
+- Express.js
+- MongoDB
+- JSON Web Token (JWT)
+- Cookie Parser
+- CORS
+- Dotenv
+
+## NPM Packages
+
+### Client-Side Packages
+- react-router-dom
+- react toastify
+- react-hook-form
+- framer-motion
+- React Icon
+- Gravity Ui Icons
+
+### Server-Side Packages
+- express
+- mongodb
+- cors
+- dotenv
+- jsonwebtoken
+- cookie-parser
+
+## Core Functionalities
+
+### Public Access
+- View all available pets
+- Search pets by name
+- Filter pets by species
+- Access detailed pet information
+
+### Authenticated Access
+- Submit adoption requests
+- Manage personal adoption requests
+- Add new pet listings
+- Update and delete existing pet listings
+- View and manage adoption requests received for listed pets
+- Approve or reject adoption requests
+
+## Installation & Setup
+
+### Client
 
 ```bash
+npm install
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+### Server
 
-You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
+```bash
+npm install
+npm start
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## Environment Variables
 
-## Learn More
+Create a `.env` file in the server root directory and configure the following variables:
 
-To learn more about Next.js, take a look at the following resources:
+```env
+DB_USER=your_database_user
+DB_PASS=your_database_password
+JWT_SECRET=your_jwt_secret
+```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Project Goals
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+This project aims to provide a complete pet adoption management solution while demonstrating modern web development practices, secure authentication, role-based functionality, RESTful API integration, and responsive user interface design.
 
-## Deploy on Vercel
+## Developer
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Developed as a Full-Stack MERN Application for educational and portfolio purposes.
