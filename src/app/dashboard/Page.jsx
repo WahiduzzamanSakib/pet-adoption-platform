@@ -12,24 +12,50 @@ import {
 import PetAddPage from "../add-pet/page";
 import MyListing from "../my-listings/page";
 import RequestPage from "../requests/page";
+import { authClient } from "@/lib/auth-client";
+import Image from "next/image";
+
 
 export default function Dashboard() {
   const [active, setActive] = useState("home");
+  const { data: session } = authClient.useSession();
+  const user = session?.user;
+  
 
   const menu = [
-    { key: "home", label: "Home", icon: FaHome },
+    { key: "profile", label: "Profile", icon: FaHome },
     { key: "requests", label: "Requests", icon: FaClipboardList },
     { key: "listings", label: "My Listing", icon: FaListUl },
     { key: "add", label: "Add Pet", icon: FaPlusCircle },
   ];
 
   const renderContent = () => {
+
+
     switch (active) {
-      case "home":
+      case "profile":
         return (
-          <h1 className="text-xl font-semibold text-gray-900 dark:text-white">
-            🏠 Dashboard Home Data
-          </h1>
+          <div className="flex items-center justify-center min-h-[80vh]">
+            <div className="bg-white dark:bg-gray-800 rounded-2xl shadow-lg p-8 w-full max-w-md">
+              <div className="flex flex-col items-center text-center">
+                <Image
+                  src={user?.image}
+                  alt={user?.name || "Profile"}
+                  width={100}
+                  height={100}
+                  className="rounded-full border-4 border-blue-500"
+                />
+
+                <h2 className="mt-4 text-2xl font-bold text-gray-900 dark:text-white">
+                  {user?.name}
+                </h2>
+
+                <p className="mt-2 text-gray-600 dark:text-gray-300">
+                  {user?.email}
+                </p>
+              </div>
+            </div>
+          </div>
         );
       case "requests":
         return <RequestPage />;
@@ -60,10 +86,9 @@ export default function Dashboard() {
               key={item.key}
               onPress={() => setActive(item.key)}
               className={`justify-start gap-3 w-full transition font-medium
-                ${
-                  active === item.key
-                    ? "bg-indigo-600 text-white"
-                    : "bg-gray-800 text-gray-200 hover:bg-gray-700"
+                ${active === item.key
+                  ? "bg-indigo-600 text-white"
+                  : "bg-gray-800 text-gray-200 hover:bg-gray-700"
                 }`}
             >
               <Icon />
@@ -90,10 +115,9 @@ export default function Dashboard() {
               variant="light"
               onPress={() => setActive(item.key)}
               className={`flex flex-col items-center gap-1 min-w-0 text-xs
-                ${
-                  active === item.key
-                    ? "text-indigo-400"
-                    : "text-gray-300"
+                ${active === item.key
+                  ? "text-indigo-400"
+                  : "text-gray-300"
                 }`}
             >
               <Icon className="text-lg" />

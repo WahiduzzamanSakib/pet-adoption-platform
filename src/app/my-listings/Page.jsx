@@ -1,7 +1,10 @@
 "use client";
 
 import { DeletedAlert } from "@/components/DeletedAlert";
-import { EditModal } from "@/components/EditModal";
+import EditModal from "@/components/EditModal";
+import RequestModalPage from "@/components/RequestModal";
+
+
 import { authClient } from "@/lib/auth-client";
 import Link from "next/link";
 import React, { useEffect, useState } from "react";
@@ -123,12 +126,8 @@ export default function MyListing() {
 
                             <div className="grid grid-cols-2 gap-2 pt-3">
 
-                                <button
-                                    onClick={() => handleOpenRequests(pet)}
-                                    className="bg-yellow-500 hover:bg-yellow-600 text-white text-sm py-2 rounded-lg font-semibold transition"
-                                >
-                                    Requests
-                                </button>
+                               
+                                <RequestModalPage petData={pet}/>
 
                                 <EditModal petData={pet} />
 

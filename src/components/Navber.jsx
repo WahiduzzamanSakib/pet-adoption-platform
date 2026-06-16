@@ -81,7 +81,7 @@ export default function Header() {
     <header className="sticky top-0 z-50 bg-white dark:bg-gray-900 shadow-sm border-b dark:border-gray-800 transition-colors">
       <nav className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3 flex items-center justify-between">
 
-        {/* Logo */}
+    
         <Link
           href="/"
           className="flex items-center gap-2 sm:gap-3"
@@ -100,22 +100,22 @@ export default function Header() {
           </span>
         </Link>
 
-        {/* Desktop Nav */}
+        
         <ul className="hidden md:flex items-center gap-4 lg:gap-8 text-sm lg:text-base font-medium">
           <li><Link href="/" className={navClass("/")}> <FaHome /> Home </Link></li>
           <li><Link href="/pets" className={navClass("/pets")}> <FaDog /> All Pets </Link></li>
-          <li><Link href="/requests" className={navClass("/requests")}> <FaClipboardList /> Requests </Link></li>
+          {/* <li><Link href="/requests" className={navClass("/requests")}> <FaClipboardList /> Requests </Link></li> */}
           <li><Link href="/my-listings" className={navClass("/my-listings")}> <FaListUl /> My Listing </Link></li>
           <li><Link href="/add-pet" className={navClass("/add-pet")}> <FaPlusCircle /> Add Pet </Link></li>
         </ul>
 
-        {/* Right Side */}
+        
         <div className="flex items-center gap-3">
 
-          {/* Theme Toggle */}
+        
           <ThemeToggle />
 
-          {/* Auth Section */}
+        
           <div className="hidden md:flex items-center gap-3 relative">
 
             {!user ? (
@@ -186,7 +186,7 @@ export default function Header() {
       >
         <Link href="/" className={mobileNavClass("/")}> <FaHome /> Home </Link>
         <Link href="/pets" className={mobileNavClass("/pets")}> <FaDog /> All Pets </Link>
-        <Link href="/requests" className={mobileNavClass("/requests")}> <FaClipboardList /> Requests </Link>
+        {/* <Link href="/requests" className={mobileNavClass("/requests")}> <FaClipboardList /> Requests </Link> */}
         <Link href="/my-listings" className={mobileNavClass("/my-listings")}> <FaListUl /> My Listing </Link>
         <Link href="/add-pet" className={mobileNavClass("/add-pet")}> <FaPlusCircle /> Add Pet </Link>
 

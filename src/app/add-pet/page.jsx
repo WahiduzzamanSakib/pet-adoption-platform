@@ -129,7 +129,7 @@ const router = useRouter();
                                         <FieldError />
                                     </TextField>
 
-                                    {/* Gender */}
+                                  
                                     <div className="w-full space-y-1">
                                         <label className="text-sm font-semibold text-gray-700 dark:text-gray-300">
                                             Gender
@@ -159,7 +159,7 @@ const router = useRouter();
                                 </div>
                             </div>
 
-                            {/* Health & Logistics */}
+                           
                             <div className="space-y-5">
                                 <h3 className="text-sm font-semibold uppercase tracking-wider text-default-400 dark:text-gray-400">
                                     Health & Logistics
@@ -171,7 +171,7 @@ const router = useRouter();
                                     <FieldError />
                                 </TextField>
 
-                                {/* Vaccination */}
+                               
                                 <div className="w-full space-y-1">
                                     <label className="text-sm font-semibold text-gray-700 dark:text-gray-300">
                                         Vaccination Status

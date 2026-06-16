@@ -2,16 +2,18 @@
 
 import { useEffect, useState } from "react";
 import { useParams } from "next/navigation";
-import { Button, Chip } from "@heroui/react";
+import { Chip } from "@heroui/react";
 import Image from "next/image";
 import { motion } from "framer-motion";
 import { authClient } from "@/lib/auth-client";
+import { AdoptModalPage } from "@/components/AdoptModal";
 
 export default function DetailsPage() {
   const { id } = useParams();
 
   const { data: session, isLoading: sessionLoading } =
     authClient.useSession();
+
 
   const [pet, setPet] = useState(null);
   const [loading, setLoading] = useState(true);
@@ -51,6 +53,14 @@ export default function DetailsPage() {
     );
   }
 
+  const userId = session?.user?.id;
+
+  const isOwner =
+    userId &&
+    pet?.userId &&
+    String(userId) === String(pet.userId);
+
+
   if (!pet) {
     return (
       <div className="flex items-center justify-center min-h-screen bg-white dark:bg-gray-950">
@@ -59,19 +69,14 @@ export default function DetailsPage() {
     );
   }
 
-  const userId = session?.user?.id;
 
-  const isOwner =
-    userId &&
-    pet?.userId &&
-    String(userId) === String(pet.userId);
 
   return (
     <div className="max-w-6xl mx-auto py-10 px-4 bg-white dark:bg-gray-950 text-gray-900 dark:text-white min-h-screen">
       <motion.div className="bg-white dark:bg-gray-900 rounded-2xl shadow-lg overflow-hidden border dark:border-gray-800">
         <div className="grid md:grid-cols-2">
 
-          {/* Image */}
+
           <motion.div
             className="bg-gray-50 dark:bg-gray-800 flex items-center justify-center p-6"
             initial={{ opacity: 0, y: 20 }}
@@ -89,12 +94,12 @@ export default function DetailsPage() {
                 width={500}
                 height={500}
                 unoptimized
-                className="rounded-xl object-cover w-full h-[400px]"
+                className="rounded-xl object-cover w-full h-100"
               />
             </motion.div>
           </motion.div>
 
-          {/* Details */}
+
           <div className="p-6 md:p-10 flex flex-col gap-6">
             <h1 className="text-3xl font-bold text-gray-900 dark:text-white">
               {pet.petName}
@@ -128,19 +133,10 @@ export default function DetailsPage() {
               </p>
             </div>
 
-            <Button
-              color="secondary"
-              className={`w-full font-semibold text-white ${isOwner ? "opacity-50 cursor-not-allowed" : ""
-                }`}
-              size="lg"
-              disabled={isOwner}
-              onClick={() => {
-                if (isOwner) return;
-                console.log("Adoption request sent");
-              }}
-            >
-              {isOwner ? "Owner this pet 🐶" : "Adopt Now 🐾"}
-            </Button>
+
+
+            <AdoptModalPage isOwner={isOwner} pet={pet} />
+
           </div>
         </div>
       </motion.div>
