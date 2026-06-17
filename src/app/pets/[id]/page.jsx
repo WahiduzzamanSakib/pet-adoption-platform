@@ -8,8 +8,11 @@ import { motion } from "framer-motion";
 import { authClient } from "@/lib/auth-client";
 import { AdoptModalPage } from "@/components/AdoptModal";
 
+
 export default function DetailsPage() {
   const { id } = useParams();
+
+
 
   const { data: session, isLoading: sessionLoading } =
     authClient.useSession();
@@ -23,7 +26,7 @@ export default function DetailsPage() {
       try {
         setLoading(true);
 
-        const res = await fetch(`http://localhost:5000/pets/${id}`);
+        const res = await fetch(`http://localhost:5000/pets/${id}`, );
         const data = await res.json();
 
         setPet(data);

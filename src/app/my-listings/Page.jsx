@@ -2,7 +2,8 @@
 
 import { DeletedAlert } from "@/components/DeletedAlert";
 import EditModal from "@/components/EditModal";
-import RequestModalPage from "@/components/RequestModal";
+import { RequestModalPage } from "@/components/RequestModal";
+
 
 
 import { authClient } from "@/lib/auth-client";

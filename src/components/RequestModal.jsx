@@ -1,132 +1,68 @@
 "use client";
 
-import { useEffect, useState } from "react";
-import { Button, Modal } from "@heroui/react";
-import { authClient } from "@/lib/auth-client";
 
-export default function RequestModalPage() {
-    const [requests, setRequests] = useState([]);
-    const [loading, setLoading] = useState(true);
+import { Button, Input, Label, Modal, Separator, Surface, TextField } from "@heroui/react";
 
-    const { data: session } = authClient.useSession();
-    const email = session?.user?.email;
-
-
-    useEffect(() => {
-        if (!session?.user?.email) return;
-
-        const email = session.user.email;
-
-        const fetchRequests = async () => {
-            try {
-                setLoading(true);
-
-                const res = await fetch(
-                    `http://localhost:5000/adoption-requests/requester/${email}`,
-                 {
-                        cache: "no-store",
-                    }
-                );
-
-                const data = await res.json();
-                setRequests(data);
-
-            } catch (error) {
-                console.error(error);
-            } finally {
-                setLoading(false);
-            }
-        };
-
-        fetchRequests();
-    }, [session?.user?.email]);
-
-
-
-
-    const getStatusColor = (status) => {
-        switch (status) {
-            case "approved":
-                return "bg-green-100 text-green-700";
-
-            case "rejected":
-                return "bg-red-100 text-red-700";
-
-            default:
-                return "bg-yellow-100 text-yellow-700";
-        }
-    };
-
+export function RequestModalPage() {
     return (
         <Modal>
-            <Modal.Trigger>
-                <button className="bg-yellow-500 text-white px-4 py-2 rounded-lg">
-                    Requests
-                </button>
-            </Modal.Trigger>
+            <Button
 
+                className="bg-yellow-500 text-white"
+            >
+                Requests
+            </Button>
             <Modal.Backdrop>
                 <Modal.Container placement="auto">
-                    <Modal.Dialog className="sm:max-w-xl">
+                    <Modal.Dialog className="sm:max-w-md">
                         <Modal.CloseTrigger />
+                        <Modal.Header>
 
-                        <Modal.Header className="flex justify-between">
-                            <p>Adoption Requests</p>
-                            <p>{requests.length}</p>
+                            <Modal.Heading>Requests</Modal.Heading>
+
                         </Modal.Header>
 
-                        <Modal.Body className="p-4 max-h-[70vh] overflow-y-auto">
-                            {loading ? (
-                                <p className="text-center py-5">Loading...</p>
-                            ) : requests.length === 0 ? (
-                                <p className="text-gray-500 text-center">
-                                    No requests found
-                                </p>
-                            ) : (
-                                requests.map((req) => (
-                                    <div
-                                        key={req._id}
-                                        className="border p-4 rounded-lg mb-3"
-                                    >
-                                        <div className="flex justify-between items-center">
-                                            <p className="font-bold text-white">{req.petName}</p>
+                         <Separator className="my-4" />
+                        <Modal.Body className="p-6">
+                            <Surface variant="default">
+                                <form className="flex flex-col gap-4">
+                                    <div className="flex justify-between gap-3">
+                                        <TextField className="w-full" name="name" type="text" variant="secondary">
+                                            <Label>Name</Label>
+                                            <Input placeholder="Enter your name" />
+                                        </TextField>
 
-                                            <span
-                                                className={`px-3 py-1 rounded-full text-xs ${getStatusColor(
-                                                    req.status
-                                                )}`}
-                                            >
-                                                {req.status}
-                                            </span>
-                                        </div>
-
-                                        <p className="mt-2 text-sm bg-gray-50 p-2 rounded">
-                                            {req.message}
-                                        </p>
-
-
-
-                                        {req.status === "pending" && (
-                                            <div className="flex gap-2 mt-3">
-                                                <Button
-                                                    color="success"
-
-                                                >
-                                                    Approve
-                                                </Button>
-
-                                                <Button
-                                                    color="danger"
-
-                                                >
-                                                    Reject
-                                                </Button>
-                                            </div>
-                                        )}
+                                        <TextField className="w-full" name="status" type="text" variant="secondary">
+                                            <Label>Status</Label>
+                                            <Input placeholder="Enter status" />
+                                        </TextField>
                                     </div>
-                                ))
-                            )}
+                                    <TextField className="w-full" name="message" variant="secondary">
+                                        <Label>Message</Label>
+                                        <Input placeholder="Enter your message" />
+                                    </TextField>
+                                    <div className="flex justify-between gap-3">
+                                        <button
+                                            type="button"
+                                            className="w-full bg-green-500 text-white py-2 rounded hover:bg-green-600 transition"
+                                        >
+                                            Approve
+                                        </button>
+
+                                        <button
+                                            type="button"
+                                            className="w-full bg-red-500 text-white py-2 rounded hover:bg-red-600 transition"
+                                        >
+                                            Reject
+                                        </button>
+                                    </div>
+                                </form>
+                            </Surface>
                         </Modal.Body>
+                        <Modal.Footer>
+
+                         
+                        </Modal.Footer>
                     </Modal.Dialog>
                 </Modal.Container>
             </Modal.Backdrop>
