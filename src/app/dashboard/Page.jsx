@@ -37,7 +37,7 @@ export default function Dashboard() {
               <div className="flex flex-col items-center text-center">
 
 
-                <Avatar className="w-40 h-40 cursor-pointer border-4 p-1 border-blue-500 shadow-md">
+                <Avatar className="w-40 h-40 rounded-full cursor-pointer border-4 p-1 border-blue-500 shadow-md">
                   <Avatar.Image alt={user?.name} src={user?.image} />
                   <Avatar.Fallback>
                     {user?.name[0]}

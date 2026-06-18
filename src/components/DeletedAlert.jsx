@@ -1,20 +1,25 @@
 "use client";
 
+import { authClient } from "@/lib/auth-client";
 import { AlertDialog, Button } from "@heroui/react";
-import { redirect } from "next/navigation";
 import { FaRegTrashAlt } from "react-icons/fa";
 import { toast } from "react-toastify";
 
 export function DeletedAlert({ petData }) {
-    const { _id, petName, breed, location } = petData
+    const { _id, petName } = petData
+
+
 
     const handleDelete = async () => {
+        const {data: tokenData} = await authClient.token()
+
         const res = await fetch(
             `http://localhost:5000/pets/${_id}`,
             {
                 method: "DELETE",
                 headers: {
                     "Content-Type": "application/json",
+                     authorization : `Bearer ${tokenData?.token}`,
                 },
             }
         );

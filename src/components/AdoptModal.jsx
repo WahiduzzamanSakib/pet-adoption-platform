@@ -6,13 +6,19 @@ import { toast } from "react-toastify";
 
 
 
-export function AdoptModalPage({ isOwner, pet }) {
+export function AdoptModalPage({  pet }) {
   
   const { petName } = pet
 
   const { data: session } = authClient.useSession();
   const name = session?.user?.name;
   const email = session?.user?.email
+ const userId = session?.user?.id;
+
+   const isOwner =
+    userId &&
+    pet?.userId &&
+    String(userId) === String(pet.userId);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -30,10 +36,16 @@ export function AdoptModalPage({ isOwner, pet }) {
       message: data.message,
     };
 
+const {data: tokenData} = await authClient.token()
+
+
+
     try {
       const res = await fetch("http://localhost:5000/adoption-requests", {
         method: "POST",
-        headers: { "Content-Type": "application/json" },
+        headers: { "Content-Type": "application/json",
+           authorization : `Bearer ${tokenData?.token}`
+         },
         body: JSON.stringify(payload),
       });
 
@@ -58,12 +70,14 @@ export function AdoptModalPage({ isOwner, pet }) {
 
       <Button
         color="secondary"
-        className="w-full font-semibold text-white disabled:cursor-not-allowed"
+        className="w-full font-semibold text-white "
         size="lg"
         isDisabled={isOwner}
       >
         {isOwner ? "Owner this pet 🐶" : "Adopt Now 🐾"}
       </Button>
+
+     
       <Modal.Backdrop>
         <Modal.Container placement="auto">
           <Modal.Dialog className="sm:max-w-md">
