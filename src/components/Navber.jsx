@@ -106,7 +106,7 @@ export default function Header() {
         <ul className="hidden md:flex items-center gap-4 lg:gap-8 text-sm lg:text-base font-medium">
           <li><Link href="/" className={navClass("/")}> <FaHome /> Home </Link></li>
           <li><Link href="/pets" className={navClass("/pets")}> <FaDog /> All Pets </Link></li>
-          <li><Link href="/requests" className={navClass("/requests")}> <FaClipboardList /> Requests </Link></li>
+          {/* <li><Link href="/requests" className={navClass("/requests")}> <FaClipboardList /> Requests </Link></li> */}
           <li><Link href="/my-listings" className={navClass("/my-listings")}> <FaListUl /> My Listing </Link></li>
           <li><Link href="/add-pet" className={navClass("/add-pet")}> <FaPlusCircle /> Add Pet </Link></li>
         </ul>
@@ -170,7 +170,7 @@ export default function Header() {
             )}
           </div>
 
-          {/* Mobile Menu Button */}
+         
           <button
             className="md:hidden text-2xl text-gray-700 dark:text-gray-300"
             onClick={() => setMenuOpen(!menuOpen)}
@@ -188,7 +188,7 @@ export default function Header() {
       >
         <Link href="/" className={mobileNavClass("/")}> <FaHome /> Home </Link>
         <Link href="/pets" className={mobileNavClass("/pets")}> <FaDog /> All Pets </Link>
-        <Link href="/requests" className={mobileNavClass("/requests")}> <FaClipboardList /> Requests </Link>
+        {/* <Link href="/requests" className={mobileNavClass("/requests")}> <FaClipboardList /> Requests </Link> */}
         <Link href="/my-listings" className={mobileNavClass("/my-listings")}> <FaListUl /> My Listing </Link>
         <Link href="/add-pet" className={mobileNavClass("/add-pet")}> <FaPlusCircle /> Add Pet </Link>
 

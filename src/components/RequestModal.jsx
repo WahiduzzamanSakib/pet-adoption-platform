@@ -1,68 +1,194 @@
 "use client";
 
-
-import { Button, Input, Label, Modal, Separator, Surface, TextField } from "@heroui/react";
+import { useEffect, useState } from "react";
+import {
+    Button,
+    Label,
+    Modal,
+    Separator,
+    Surface,
+    TextField,
+    Input,
+} from "@heroui/react";
+import { authClient } from "@/lib/auth-client";
 
 export function RequestModalPage() {
+    const { data: session } = authClient.useSession();
+    const email = session?.user?.email;
+
+    const [requests, setRequests] = useState([]);
+    const [loading, setLoading] = useState(true);
+
+
+    const refetchRequests = async () => {
+        try {
+            const res = await fetch(
+                `http://localhost:5000/adoption-requests/owner/${email}`
+            );
+
+            const data = await res.json();
+            setRequests(Array.isArray(data) ? data : []);
+        } catch (error) {
+            console.log(error);
+        } finally {
+            setLoading(false);
+        }
+    };
+
+
+    useEffect(() => {
+        if (!email) return;
+        refetchRequests();
+    }, [email]);
+
+
+    const handleApprove = async (petId, requestId) => {
+        try {
+            await fetch(
+                `http://localhost:5000/adoption-requests/approve/${petId}/${requestId}`,
+                {
+                    method: "PATCH",
+                }
+            );
+
+            await refetchRequests();
+        } catch (error) {
+            console.log(error);
+        }
+    };
+
+
+    const handleReject = async (id) => {
+        try {
+            await fetch(
+                `http://localhost:5000/adoption-requests/reject/${id}`,
+                {
+                    method: "PATCH",
+                }
+            );
+
+            await refetchRequests();
+        } catch (error) {
+            console.log(error);
+        }
+    };
+
     return (
         <Modal>
-            <Button
-
-                className="bg-yellow-500 text-white"
-            >
+            <Button variant="secondary">
                 Requests
             </Button>
+
             <Modal.Backdrop>
                 <Modal.Container placement="auto">
-                    <Modal.Dialog className="sm:max-w-md">
+                    <Modal.Dialog className="sm:max-w-2xl">
                         <Modal.CloseTrigger />
+
                         <Modal.Header>
-
-                            <Modal.Heading>Requests</Modal.Heading>
-
+                            <Modal.Heading>
+                                <div className="flex justify-between  text-2xl font-bold">
+                                    <p>Adoption Requests</p>
+                                    <p className="text-blue-500 border px-3 py-1 rounded-full">
+                                        {requests.length}
+                                    </p>
+                                </div>
+                            </Modal.Heading>
                         </Modal.Header>
 
-                         <Separator className="my-4" />
+                        <Separator className="my-2" />
+
                         <Modal.Body className="p-6">
-                            <Surface variant="default">
-                                <form className="flex flex-col gap-4">
-                                    <div className="flex justify-between gap-3">
-                                        <TextField className="w-full" name="name" type="text" variant="secondary">
-                                            <Label>Name</Label>
-                                            <Input placeholder="Enter your name" />
-                                        </TextField>
-
-                                        <TextField className="w-full" name="status" type="text" variant="secondary">
-                                            <Label>Status</Label>
-                                            <Input placeholder="Enter status" />
-                                        </TextField>
-                                    </div>
-                                    <TextField className="w-full" name="message" variant="secondary">
-                                        <Label>Message</Label>
-                                        <Input placeholder="Enter your message" />
-                                    </TextField>
-                                    <div className="flex justify-between gap-3">
-                                        <button
-                                            type="button"
-                                            className="w-full bg-green-500 text-white py-2 rounded hover:bg-green-600 transition"
+                            {loading ? (
+                                <p className="text-center text-gray-500">
+                                  <div className="loader"></div>
+                                </p>
+                            ) : requests.length === 0 ? (
+                                <p className="text-center text-gray-500">
+                                    No requests yet
+                                </p>
+                            ) : (
+                                <div className="space-y-4">
+                                    {requests.map((request) => (
+                                        <Surface
+                                            key={request._id}
+                                            className="p-4 border rounded-lg"
                                         >
-                                            Approve
-                                        </button>
 
-                                        <button
-                                            type="button"
-                                            className="w-full bg-red-500 text-white py-2 rounded hover:bg-red-600 transition"
-                                        >
-                                            Reject
-                                        </button>
-                                    </div>
-                                </form>
-                            </Surface>
+                                            <div className="space-y-2">
+                                                <div className="flex gap-3">
+                                                    <TextField className="w-full">
+                                                        <Label>Pet Name</Label>
+                                                        <Input
+                                                            value={request.petName}
+                                                            readOnly
+                                                        />
+                                                    </TextField>
+
+                                                    <TextField className="w-full">
+                                                        <Label>Status</Label>
+                                                        <Input
+                                                            value={request.status}
+                                                            readOnly
+                                                            className={
+                                                                request.status === "approved"
+                                                                    ? "text-green-500"
+                                                                    : request.status === "rejected"
+                                                                        ? "text-red-500"
+                                                                        : "text-yellow-500"
+                                                            }
+                                                        />
+                                                    </TextField>
+                                                </div>
+
+                                                <TextField>
+                                                    <Label>Requester Email</Label>
+                                                    <Input
+                                                        value={request.requesterEmail}
+                                                        readOnly
+                                                    />
+                                                </TextField>
+
+                                                <TextField>
+                                                    <Label>Message</Label>
+                                                    <Input
+                                                        value={request.message}
+                                                        readOnly
+                                                    />
+                                                </TextField>
+                                            </div>
+
+
+                                            {request.status === "pending" && (
+                                                <div className="flex gap-3 mt-4">
+                                                    <Button
+                                                        onClick={() =>
+                                                            handleApprove(
+                                                                request.petId,
+                                                                request._id
+                                                            )
+                                                        }
+                                                        className="flex-1 bg-green-500 text-white"
+                                                    >
+                                                        Approve
+                                                    </Button>
+
+                                                    <Button
+                                                        onClick={() =>
+                                                            handleReject(request._id)
+                                                        }
+                                                        className="flex-1 bg-red-500 text-white"
+                                                    >
+                                                        Reject
+                                                    </Button>
+                                                </div>
+                                            )}
+                                        </Surface>
+                                    ))}
+                                </div>
+                            )}
                         </Modal.Body>
-                        <Modal.Footer>
 
-                         
-                        </Modal.Footer>
+                        <Modal.Footer />
                     </Modal.Dialog>
                 </Modal.Container>
             </Modal.Backdrop>

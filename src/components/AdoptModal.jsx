@@ -4,7 +4,10 @@ import { authClient } from "@/lib/auth-client";
 import { Button, Input, Label, Modal, Surface, TextField } from "@heroui/react";
 import { toast } from "react-toastify";
 
+
+
 export function AdoptModalPage({ isOwner, pet }) {
+  
   const { petName } = pet
 
   const { data: session } = authClient.useSession();
@@ -17,8 +20,6 @@ export function AdoptModalPage({ isOwner, pet }) {
     const formData = new FormData(e.currentTarget);
     const data = Object.fromEntries(formData.entries());
 
-
-
     const payload = {
       petId: pet._id,
       petName: pet.petName,
@@ -28,15 +29,26 @@ export function AdoptModalPage({ isOwner, pet }) {
       date: data.date,
       message: data.message,
     };
-    console.log(payload)
-    const res = await fetch("http://localhost:5000/adoption-requests", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(payload),
-    });
 
-    const result = await res.json();
-    console.log(result)
+    try {
+      const res = await fetch("http://localhost:5000/adoption-requests", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(payload),
+      });
+
+      const result = await res.json();
+
+      if (res.ok) {
+        toast.success(result?.message || "Request sent successfully!");
+          window.location.reload();
+      } else {
+        toast.error(result?.message || "Something went wrong!");
+      }
+    } catch (error) {
+      toast.error("Network error. Please try again!");
+      console.error(error);
+    }
   };
 
 
