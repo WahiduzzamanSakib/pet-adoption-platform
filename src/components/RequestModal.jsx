@@ -23,7 +23,7 @@ export function RequestModalPage() {
     const refetchRequests = async () => {
         try {
             const res = await fetch(
-                `http://localhost:5000/adoption-requests/owner/${email}`
+                `${process.env.NEXT_PUBLIC_SERVER_URL}/adoption-requests/owner/${email}`
             );
 
             const data = await res.json();
@@ -45,7 +45,7 @@ export function RequestModalPage() {
     const handleApprove = async (petId, requestId) => {
         try {
             await fetch(
-                `http://localhost:5000/adoption-requests/approve/${petId}/${requestId}`,
+                `${process.env.NEXT_PUBLIC_SERVER_URL}/adoption-requests/approve/${petId}/${requestId}`,
                 {
                     method: "PATCH",
                 }
@@ -61,7 +61,7 @@ export function RequestModalPage() {
     const handleReject = async (id) => {
         try {
             await fetch(
-                `http://localhost:5000/adoption-requests/reject/${id}`,
+                `${process.env.NEXT_PUBLIC_SERVER_URL}/adoption-requests/reject/${id}`,
                 {
                     method: "PATCH",
                 }

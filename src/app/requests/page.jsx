@@ -18,7 +18,7 @@ const RequestPage = () => {
                 setLoading(true);
 
                 const res = await fetch(
-                    `http://localhost:5000/adoption-requests/requester/${email}`
+                    `${process.env.NEXT_PUBLIC_SERVER_URL}/adoption-requests/requester/${email}`
                 );
 
                 if (!res.ok) {

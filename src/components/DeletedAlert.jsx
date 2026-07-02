@@ -14,7 +14,7 @@ export function DeletedAlert({ petData }) {
         const {data: tokenData} = await authClient.token()
 
         const res = await fetch(
-            `http://localhost:5000/pets/${_id}`,
+            `${process.env.NEXT_PUBLIC_SERVER_URL}/pets/${_id}`,
             {
                 method: "DELETE",
                 headers: {

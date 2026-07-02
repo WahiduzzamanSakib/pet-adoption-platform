@@ -38,7 +38,7 @@ const AllPets = () => {
       setLoading(true);
 
       const res = await fetch(
-        `http://localhost:5000/pets?search=${search}&species=${species}&sort=${sort}`
+        `${process.env.NEXT_PUBLIC_SERVER_URL}/pets?search=${search}&species=${species}&sort=${sort}`
       );
 
       const data = await res.json();

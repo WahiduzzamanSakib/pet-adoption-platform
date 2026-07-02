@@ -41,7 +41,7 @@ const {data: tokenData} = await authClient.token()
 
 
     try {
-      const res = await fetch("http://localhost:5000/adoption-requests", {
+      const res = await fetch(`${process.env.NEXT_PUBLIC_SERVER_URL}/adoption-requests`, {
         method: "POST",
         headers: { "Content-Type": "application/json",
            authorization : `Bearer ${tokenData?.token}`
@@ -104,14 +104,15 @@ const {data: tokenData} = await authClient.token()
                     <Input value={email || ""} readOnly />
                   </TextField>
 
-                  <TextField className="w-full" name="date" variant="secondary">
+                  <TextField  className="w-full" name="date" variant="secondary">
                     <Label>Date</Label>
-                    <Input type="date" />
+                    <Input required  type="date" />
                   </TextField>
 
                   <TextField className="w-full" variant="secondary">
                     <Label>Message</Label>
                     <textarea
+                    required
                       name="message"
                       className="w-full min-h-30 rounded-md border px-3 py-2"
                       placeholder="Enter your message"

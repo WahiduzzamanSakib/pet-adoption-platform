@@ -30,7 +30,7 @@ export default function MyListing() {
                 setError("");
 
                 const res = await fetch(
-                    `http://localhost:5000/pets/user/${email}`
+                    `${process.env.NEXT_PUBLIC_SERVER_URL}/pets/user/${email}`
                 );
 
                 if (!res.ok) throw new Error("Failed to fetch pets");
