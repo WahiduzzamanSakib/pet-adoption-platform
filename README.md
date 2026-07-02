@@ -6,14 +6,13 @@ Pet Adoption Platform is a modern full-stack web application built with the MERN
 
 ## Live Demo
 
-🔗 **Live Website:** https://your-live-site-url.com
+🔗 **Live Website:** https://pet-adoption-platform-mu.vercel.app
 
 ## Key Features
 
 - Secure authentication using Email/Password and Google Sign-In
 - Browse and explore pets available for adoption
 - Advanced search and filtering by pet name and species
-- Detailed pet profiles with adoption request functionality
 - User dashboard for managing adoption requests
 - Pet owner dashboard for managing pet listings
 - Approve or reject adoption requests with adoption status control
@@ -95,20 +94,8 @@ npm install
 npm start
 ```
 
-## Environment Variables
-
-Create a `.env` file in the server root directory and configure the following variables:
-
-```env
-DB_USER=your_database_user
-DB_PASS=your_database_password
-JWT_SECRET=your_jwt_secret
-```
 
 ## Project Goals
 
 This project aims to provide a complete pet adoption management solution while demonstrating modern web development practices, secure authentication, role-based functionality, RESTful API integration, and responsive user interface design.
 
-## Developer
-
-Developed as a Full-Stack MERN Application for educational and portfolio purposes.
