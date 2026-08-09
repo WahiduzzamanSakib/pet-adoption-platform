@@ -1,4 +1,6 @@
+"use client";
 import React from "react";
+import { usePathname } from "next/navigation";
 import {
     FaArrowRight,
     FaFacebookF,
@@ -8,7 +10,11 @@ import {
 import { FaXTwitter } from "react-icons/fa6";
 
 export default function Footer() {
-   
+   const pathname = usePathname();
+
+if (pathname.startsWith("/dashboard")) {
+  return null;
+}
 
     return (
         <footer className="bg-gray-900 text-gray-300 font-sans px-6 md:px-10 pt-16 pb-6 mt-auto">
