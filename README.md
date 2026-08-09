@@ -6,7 +6,7 @@ Pet Adoption Platform is a modern full-stack web application built with the MERN
 
 ## Live Demo
 
-🔗 **Live Website:** https://pet-adoption-platform-mu.vercel.app <br>
+🔗 **Live Website:** https://pet-adoption-platform-flax.vercel.app <br>
 🔗 **Server:** https://github.com/WahiduzzamanSakib/pet-adoption-server <br>
 🔗 **Client:** https://github.com/WahiduzzamanSakib/pet-adoption-platform
 
