@@ -27,7 +27,7 @@ Pet Adoption Platform is a modern full-stack web application built with the MERN
 ## Technology Stack
 
 ### Frontend
-- React.js
+- Next.js
 - React Router DOM
 - Tailwind CSS
 - HeroUI
