@@ -40,7 +40,7 @@ export default function Dashboard() {
                 <Avatar className="w-40 h-40 rounded-full cursor-pointer border-4 p-1 border-blue-500 shadow-md">
                   <Avatar.Image alt={user?.name} src={user?.image} />
                   <Avatar.Fallback>
-                    {user?.name[0]}
+                    {user?.name?.charAt(0) || "U"}
                   </Avatar.Fallback>
                 </Avatar>
 
