@@ -80,22 +80,6 @@ Pet Adoption Platform is a modern full-stack web application built with the MERN
 - View and manage adoption requests received for listed pets
 - Approve or reject adoption requests
 
-## Installation & Setup
-
-### Client
-
-```bash
-npm install
-npm run dev
-```
-
-### Server
-
-```bash
-npm install
-npm start
-```
-
 
 ## Project Goals
 
