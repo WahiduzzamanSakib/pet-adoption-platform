@@ -1,16 +1,20 @@
-# Pet Adoption Platform 🐾
+# 🐾 Pet Adoption Platform
+
+<img width="640" height="300" alt="Pet-Adoption" src="https://github.com/user-attachments/assets/f92aec73-fa99-4956-977c-3791bd38a36e" />
 
 ## Overview
 
 Pet Adoption Platform is a modern full-stack web application built with the MERN Stack. The platform simplifies the pet adoption process by connecting pet owners, shelters, and potential adopters in a secure and user-friendly environment. Users can explore available pets, submit adoption requests, and track their application status, while pet owners can efficiently manage listings and adoption requests.
 
-## Live Demo
+
+## 🌐 Live Demo
 
 🔗 **Live Website:** https://pet-adoption-platform-flax.vercel.app <br>
-🔗 **Server:** https://github.com/WahiduzzamanSakib/pet-adoption-server <br>
-🔗 **Client:** https://github.com/WahiduzzamanSakib/pet-adoption-platform
+🔗 **Server Repository:** https://github.com/WahiduzzamanSakib/pet-adoption-server <br>
+🔗 **Client Repository:** https://github.com/WahiduzzamanSakib/pet-adoption-platform
 
-## Key Features
+
+## 🚀 Key Features
 
 - Secure authentication using Email/Password and Google Sign-In
 - Browse and explore pets available for adoption
@@ -24,11 +28,12 @@ Pet Adoption Platform is a modern full-stack web application built with the MERN
 - Dark/Light theme support
 - Smooth UI animations using Framer Motion
 
-## Technology Stack
+
+## 🛠️ Technology Stack
 
 ### Frontend
+
 - Next.js
-- React Router DOM
 - Tailwind CSS
 - HeroUI
 - React Hook Form
@@ -37,7 +42,9 @@ Pet Adoption Platform is a modern full-stack web application built with the MERN
 - Framer Motion
 - Dark-light Theme
 
+
 ### Backend
+
 - Node.js
 - Express.js
 - MongoDB
@@ -46,17 +53,20 @@ Pet Adoption Platform is a modern full-stack web application built with the MERN
 - CORS
 - Dotenv
 
-## NPM Packages
+
+## 📦 NPM Packages
 
 ### Client-Side Packages
-- react-router-dom
-- react toastify
+
+- react-toastify
 - react-hook-form
 - framer-motion
-- React Icon
-- Gravity Ui Icons
+- react-icons
+- Gravity UI Icons
+
 
 ### Server-Side Packages
+
 - express
 - mongodb
 - cors
@@ -64,15 +74,58 @@ Pet Adoption Platform is a modern full-stack web application built with the MERN
 - jsonwebtoken
 - cookie-parser
 
-## Core Functionalities
+
+## ⚙️ Installation & Setup
+
+### Client Setup
+
+```bash
+git clone https://github.com/WahiduzzamanSakib/pet-adoption-platform.git
+
+cd pet-adoption-platform
+
+npm install
+
+npm run dev
+```
+
+
+### Server Setup
+
+```bash
+git clone https://github.com/WahiduzzamanSakib/pet-adoption-server.git
+
+cd pet-adoption-server
+
+npm install
+
+npm start
+```
+
+
+## 🔐 Environment Variables
+
+Create a `.env` file in the server folder and add your required environment variables.
+
+
+```env
+MONGODB_URI=your_mongodb_connection_string
+JWT_SECRET=your_jwt_secret
+```
+
+
+## 🎯 Core Functionalities
 
 ### Public Access
+
 - View all available pets
 - Search pets by name
 - Filter pets by species
 - Access detailed pet information
 
+
 ### Authenticated Access
+
 - Submit adoption requests
 - Manage personal adoption requests
 - Add new pet listings
@@ -81,7 +134,6 @@ Pet Adoption Platform is a modern full-stack web application built with the MERN
 - Approve or reject adoption requests
 
 
-## Project Goals
+## 🎯 Project Goals
 
 This project aims to provide a complete pet adoption management solution while demonstrating modern web development practices, secure authentication, role-based functionality, RESTful API integration, and responsive user interface design.
-
