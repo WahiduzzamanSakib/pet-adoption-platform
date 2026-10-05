@@ -1,6 +1,6 @@
 "use client";
 
-import React from "react";
+import React, { useState } from "react";
 import {
     Card,
     Button,
@@ -20,6 +20,7 @@ import { toast } from "react-toastify";
 import { authClient } from "@/lib/auth-client";
 import Link from "next/link";
 import { motion } from "framer-motion";
+import { FiEye, FiEyeOff } from "react-icons/fi";
 
 const container = {
     hidden: { opacity: 0, y: 25 },
@@ -41,6 +42,8 @@ const item = {
 
 const SignUpPage = () => {
     const router = useRouter();
+    const [showPassword, setShowPassword] = useState(false);
+    const [showConfirmPassword, setShowConfirmPassword] = useState(false);
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -123,7 +126,7 @@ const SignUpPage = () => {
             >
                 <Card className="p-5 sm:p-6 md:p-8 shadow-xl rounded-2xl bg-white dark:bg-gray-900 border dark:border-gray-800">
 
-                   
+
                     <motion.div variants={item} className="text-center mb-6">
 
                         <div className="flex justify-center mb-2">
@@ -146,7 +149,7 @@ const SignUpPage = () => {
                         </p>
                     </motion.div>
 
-                  
+
                     <Form className="flex flex-col gap-4" onSubmit={handleSubmit}>
 
                         <motion.div variants={item}>
@@ -174,9 +177,26 @@ const SignUpPage = () => {
                         </motion.div>
 
                         <motion.div variants={item}>
-                            <TextField name="password" type="password" isRequired>
+                            <TextField
+                                name="password"
+                                type={showPassword ? "text" : "password"}
+                                isRequired
+                            >
                                 <Label>Password</Label>
-                                <Input className="dark:bg-gray-800 dark:text-white" placeholder="Enter password" />
+                                <div className="relative">
+                                    <Input
+                                        className="w-full pr-10 dark:bg-gray-800 dark:text-white"
+                                        placeholder="Enter password"
+                                    />
+                                    <button
+                                        type="button"
+                                        onClick={() => setShowPassword((prev) => !prev)}
+                                        aria-label={showPassword ? "Hide password" : "Show password"}
+                                        className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-500 hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-200"
+                                    >
+                                        {showPassword ? <FiEyeOff size={18} /> : <FiEye size={18} />}
+                                    </button>
+                                </div>
                                 <Description className="dark:text-gray-400">
                                     Minimum 6 characters with uppercase, lowercase and number
                                 </Description>
@@ -185,9 +205,26 @@ const SignUpPage = () => {
                         </motion.div>
 
                         <motion.div variants={item}>
-                            <TextField name="confirmPassword" type="password" isRequired>
+                            <TextField
+                                name="confirmPassword"
+                                type={showConfirmPassword ? "text" : "password"}
+                                isRequired
+                            >
                                 <Label>Confirm Password</Label>
-                                <Input className="dark:bg-gray-800 dark:text-white" placeholder="Re-enter password" />
+                                <div className="relative">
+                                    <Input
+                                        className="w-full pr-10 dark:bg-gray-800 dark:text-white"
+                                        placeholder="Re-enter password"
+                                    />
+                                    <button
+                                        type="button"
+                                        onClick={() => setShowConfirmPassword((prev) => !prev)}
+                                        aria-label={showConfirmPassword ? "Hide password" : "Show password"}
+                                        className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-500 hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-200"
+                                    >
+                                        {showConfirmPassword ? <FiEyeOff size={18} /> : <FiEye size={18} />}
+                                    </button>
+                                </div>
                                 <FieldError />
                             </TextField>
                         </motion.div>
@@ -203,7 +240,7 @@ const SignUpPage = () => {
                         </motion.div>
                     </Form>
 
-                  
+
                     <motion.div variants={item} className="flex items-center my-5">
                         <div className="flex-1 h-px bg-gray-200 dark:bg-gray-700"></div>
                         <span className="px-3 text-xs text-gray-400 dark:text-gray-500">
@@ -212,7 +249,7 @@ const SignUpPage = () => {
                         <div className="flex-1 h-px bg-gray-200 dark:bg-gray-700"></div>
                     </motion.div>
 
-                   
+
                     <motion.div whileTap={{ scale: 0.97 }}>
                         <Button
                             onClick={handleGoogleLogin}
@@ -224,7 +261,7 @@ const SignUpPage = () => {
                         </Button>
                     </motion.div>
 
-                 
+
                     <motion.p className="text-center text-xs sm:text-sm text-gray-500 dark:text-gray-400 mt-6">
                         Already have an account?{" "}
                         <Link

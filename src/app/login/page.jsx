@@ -133,11 +133,11 @@ const SignInPage = () => {
                                 <Label>Password</Label>
 
                                 <div
-                                    className="flex items-center gap-2 rounded-lg px-4 py-1.5 bg-gray-100 dark:bg-gray-800 border border-gray-200 dark:border-gray-700 transition focus-within:ring-2 focus-within:ring-blue-500 focus-within:border-transparent"
+                                    className="flex items-center gap-2 rounded-lg px-2 py-1.5 bg-gray-100 dark:bg-gray-800 border border-gray-200 dark:border-gray-700 transition focus-within:ring-2 focus-within:ring-blue-500 focus-within:border-transparent"
                                 >
                                     <Input
                                         placeholder="Enter your password"
-                                        className="flex-1 bg-transparent border-0 shadow-none p-0 h-auto outline-none focus:outline-none focus:ring-0 text-gray-800 dark:text-white placeholder:text-gray-400"
+                                        className="flex-1 bg-transparent border-0 shadow-none p-0 h-auto outline-none focus:outline-none focus:ring-0 text-gray-800 dark:text-white placeholder:text-gray-400 px-2"
                                     />
 
                                     <button

@@ -124,14 +124,14 @@ export default function Header() {
               <>
                 <Link
                   href="/login"
-                  className="flex items-center gap-1 text-gray-700 dark:text-gray-300 hover:text-orange-500"
+                  className="flex items-center gap-1 text-gray-700 hover:scale-105 transition border rounded-lg px-3 py-1 dark:text-gray-300 hover:text-orange-500 dark:hover:text-orange-500"
                 >
                   <FaSignInAlt /> Login
                 </Link>
 
                 <Link
                   href="/signup"
-                  className="flex items-center gap-1 bg-orange-500 hover:bg-orange-600 text-white px-5 py-2 rounded-full"
+                  className="flex items-center gap-1 bg-orange-500 hover:bg-orange-600 hover:scale-105 transition  text-white px-5 py-1 rounded-full"
                 >
                   <IoIosPersonAdd size={18} />
                   Get Started
