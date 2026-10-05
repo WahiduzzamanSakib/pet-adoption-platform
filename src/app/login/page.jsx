@@ -1,14 +1,7 @@
 "use client";
 
-import React from "react";
-import {
-    Card,
-    Button,
-    Form,
-    Input,
-    Label,
-    TextField,
-} from "@heroui/react";
+import React, { useState } from "react";
+import { Card, Button, Form, Input, Label, TextField, } from "@heroui/react";
 import { useRouter } from "next/navigation";
 import { FcGoogle } from "react-icons/fc";
 import { toast } from "react-toastify";
@@ -16,6 +9,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { authClient } from "@/lib/auth-client";
 import { motion } from "framer-motion";
+import { FiEye, FiEyeOff } from "react-icons/fi";
 
 const container = {
     hidden: { opacity: 0, y: 20 },
@@ -37,6 +31,7 @@ const item = {
 
 const SignInPage = () => {
     const router = useRouter();
+    const [showPassword, setShowPassword] = useState(false);
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -130,12 +125,30 @@ const SignInPage = () => {
                         </motion.div>
 
                         <motion.div variants={item}>
-                            <TextField name="password" type="password" isRequired>
+                            <TextField
+                                name="password"
+                                type={showPassword ? "text" : "password"}
+                                isRequired
+                            >
                                 <Label>Password</Label>
-                                <Input
-                                    placeholder="Enter your password"
-                                    className="dark:bg-gray-800 dark:text-white"
-                                />
+
+                                <div
+                                    className="flex items-center gap-2 rounded-lg px-4 py-1.5 bg-gray-100 dark:bg-gray-800 border border-gray-200 dark:border-gray-700 transition focus-within:ring-2 focus-within:ring-blue-500 focus-within:border-transparent"
+                                >
+                                    <Input
+                                        placeholder="Enter your password"
+                                        className="flex-1 bg-transparent border-0 shadow-none p-0 h-auto outline-none focus:outline-none focus:ring-0 text-gray-800 dark:text-white placeholder:text-gray-400"
+                                    />
+
+                                    <button
+                                        type="button"
+                                        onClick={() => setShowPassword((prev) => !prev)}
+                                        aria-label={showPassword ? "Hide password" : "Show password"}
+                                        className="text-gray-400 hover:text-gray-600 dark:hover:text-gray-200 transition"
+                                    >
+                                        {showPassword ? <FiEyeOff size={16} /> : <FiEye size={16} />}
+                                    </button>
+                                </div>
                             </TextField>
                         </motion.div>
 
@@ -149,7 +162,7 @@ const SignInPage = () => {
                         </motion.div>
                     </Form>
 
-                   
+
                     <motion.div variants={item} className="flex items-center my-3">
                         <div className="flex-1 border-t dark:border-gray-700"></div>
                         <span className="px-3 text-gray-400 dark:text-gray-500 text-sm">
@@ -169,7 +182,7 @@ const SignInPage = () => {
                         </Button>
                     </motion.div>
 
-                   
+
                     <motion.p variants={item} className="text-center text-sm text-gray-500 dark:text-gray-400 mt-3">
                         Don't have an account?{" "}
                         <Link
