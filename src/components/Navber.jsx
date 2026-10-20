@@ -20,6 +20,7 @@ import {
 import { IoIosPersonAdd } from "react-icons/io";
 import { Avatar } from "@heroui/react";
 import { authClient } from "@/lib/auth-client";
+import { FcAbout } from "react-icons/fc";
 
 
 export default function Header() {
@@ -109,6 +110,7 @@ export default function Header() {
           {/* <li><Link href="/requests" className={navClass("/requests")}> <FaClipboardList /> Requests </Link></li> */}
           <li><Link href="/my-listings" className={navClass("/my-listings")}> <FaListUl /> My Listing </Link></li>
           <li><Link href="/add-pet" className={navClass("/add-pet")}> <FaPlusCircle /> Add Pet </Link></li>
+          <li><Link href="/aboutus" className={navClass("/aboutus")}> <FcAbout /> About Us </Link></li>
         </ul>
 
         
