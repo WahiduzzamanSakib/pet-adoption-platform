@@ -10,19 +10,19 @@ import {
 import { FaXTwitter } from "react-icons/fa6";
 
 export default function Footer() {
-   const pathname = usePathname();
+    const pathname = usePathname();
 
-if (pathname.startsWith("/dashboard")) {
-  return null;
-}
+    if (pathname.startsWith("/dashboard")) {
+        return null;
+    }
 
     return (
-        <footer className="bg-gray-900 text-gray-300 font-sans px-6 md:px-10 pt-16 pb-6 mt-auto">
+        <footer className="dark:bg-[#182746] bg-white py-5 border-t border-slate-200 dark:border-slate-700">
             <div className="max-w-6xl mx-auto grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-10">
 
 
                 <div className="flex flex-col gap-3">
-                    <h3 className="text-white text-2xl font-bold flex items-center gap-2">
+                    <h3 className="flex items-center gap-2 text-2xl font-bold text-slate-900 dark:text-white">
                         🐾 Pet Adoption Platform
                     </h3>
 
@@ -34,36 +34,36 @@ if (pathname.startsWith("/dashboard")) {
 
 
                 <div className="flex flex-col gap-3">
-    <h4 className="text-white text-lg font-semibold tracking-wide">
-        Quick Links
-    </h4>
+                    <h4 className="text-slate-900 dark:text-white text-lg font-semibold tracking-wide">
+                        Quick Links
+                    </h4>
 
-    <ul className="flex flex-col gap-2.5">
-        {[
-            { href: "/browse", label: "Find a Pet" },
-            { href: "/about", label: "Our Mission" },
-            { href: "#", label: "Partner Shelters" },
-            { href: "#", label: "How to Help" },
-        ].map((link) => (
-            <li key={link.label}>
-                <a
-                    href={link.href}
-                    className="group inline-flex items-center gap-2 text-gray-400 hover:text-blue-400 text-sm transition-colors duration-200"
-                >
+                    <ul className="flex flex-col gap-2.5">
+                        {[
+                            { href: "/browse", label: "Find a Pet" },
+                            { href: "/about", label: "Our Mission" },
+                            { href: "#", label: "Partner Shelters" },
+                            { href: "#", label: "How to Help" },
+                        ].map((link) => (
+                            <li key={link.label}>
+                                <a
+                                    href={link.href}
+                                    className="group inline-flex items-center gap-2 text-gray-400 hover:text-blue-400 text-sm transition-colors duration-200"
+                                >
 
-                    <FaArrowRight
-                        className="opacity-0 -translate-x-2 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-300 text-xs"
-                        />
-                        {link.label}
-                </a>
-            </li>
-        ))}
-    </ul>
-</div>
+                                    <FaArrowRight
+                                        className="opacity-0 -translate-x-2 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-300 text-xs"
+                                    />
+                                    {link.label}
+                                </a>
+                            </li>
+                        ))}
+                    </ul>
+                </div>
 
 
                 <div className="flex flex-col gap-3">
-                    <h4 className="text-white text-lg font-semibold tracking-wide">
+                    <h4 className="text-slate-900 dark:text-white text-lg font-semibold tracking-wide">
                         Contact Us
                     </h4>
                     <p className="text-gray-400 text-sm">
@@ -76,7 +76,7 @@ if (pathname.startsWith("/dashboard")) {
                 </div>
 
                 <div className="flex flex-col gap-3">
-                    <h4 className="text-white text-lg font-semibold tracking-wide">
+                    <h4 className="text-slate-900 dark:text-white text-lg font-semibold tracking-wide">
                         Follow Us
                     </h4>
 
