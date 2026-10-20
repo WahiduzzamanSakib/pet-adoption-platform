@@ -100,7 +100,7 @@ export default function About() {
 
                         <div className="mt-8 flex flex-wrap gap-4">
                             <Link
-                                href="/all-pets"
+                                href="/pets"
                                 className="inline-flex items-center gap-2 rounded-lg bg-orange-500 px-6 py-3 font-semibold text-white transition hover:bg-orange-600"
                             >
                                 Explore Pets
@@ -226,7 +226,7 @@ export default function About() {
 
                     <div className="mt-10 text-center">
                         <Link
-                            href="/all-pets"
+                            href="/pets"
                             className="inline-flex items-center gap-2 rounded-lg bg-orange-600 px-7 py-3 font-semibold text-white shadow-sm transition-all duration-300 hover:bg-orange-700 hover:shadow-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-orange-500 focus-visible:ring-offset-2 focus-visible:ring-offset-slate-50 dark:bg-orange-500 dark:hover:bg-orange-600 dark:focus-visible:ring-offset-[#0b1220]"
                         >
                             Start Your Adoption Journey
@@ -305,7 +305,7 @@ export default function About() {
                         </p>
 
                         <Link
-                            href="/all-pets"
+                            href="/pets"
                             className="mt-7 inline-flex items-center gap-2 font-semibold text-orange-600 transition hover:text-orange-700 dark:text-orange-400 dark:hover:text-orange-300"
                         >
                             Meet the Pets
@@ -353,13 +353,22 @@ export default function About() {
                         become a special part of your family.
                     </p>
 
-                    <Link
-                        href="/all-pets"
-                        className="mt-8 inline-flex items-center gap-2 rounded-lg bg-white px-7 py-3 font-bold text-orange-600 transition hover:bg-orange-50"
-                    >
-                        Browse All Pets
-                        <FiArrowRight />
-                    </Link>
+                    <div className="flex justify-center gap-8">
+                        <Link
+                            href="/pets"
+                            className="mt-8 inline-flex items-center gap-2 rounded-lg bg-white px-7 py-3 font-bold text-orange-600 transition hover:bg-orange-50"
+                        >
+                            Browse All Pets
+                            <FiArrowRight />
+                        </Link>
+                        <Link
+                            href="/login"
+                            className="mt-8 inline-flex items-center gap-2 rounded-lg bg-white px-7 py-3 font-bold text-orange-600 transition hover:bg-orange-50"
+                        >
+                             Login
+                            <FiArrowRight />
+                        </Link>
+                    </div>
                 </div>
             </section>
         </main>

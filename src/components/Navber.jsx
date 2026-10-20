@@ -104,7 +104,7 @@ export default function Header() {
         </Link>
 
         
-        <ul className="hidden md:flex items-center gap-4 lg:gap-8 text-sm lg:text-base font-medium">
+        <ul className="hidden md:flex items-center gap-4 lg:gap-6 text-sm lg:text-base font-medium">
           <li><Link href="/" className={navClass("/")}> <FaHome /> Home </Link></li>
           <li><Link href="/pets" className={navClass("/pets")}> <FaDog /> All Pets </Link></li>
           {/* <li><Link href="/requests" className={navClass("/requests")}> <FaClipboardList /> Requests </Link></li> */}
