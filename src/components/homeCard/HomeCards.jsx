@@ -37,7 +37,7 @@ const HomeCards = ({ pets = [] }) => {
   }, [pets]);
 
   return (
-    <div className="w-full py-10 dark:bg-slate-800 bg-white">
+    <div className="w-full py-12 dark:bg-slate-800 bg-white">
      
       <div className="max-w-7xl mx-auto px-4">
         <h1 className="text-3xl font-bold text-center mb-8 text-gray-900 dark:text-white">
