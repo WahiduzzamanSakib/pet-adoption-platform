@@ -193,6 +193,7 @@ export default function Header() {
         {/* <Link href="/requests" className={mobileNavClass("/requests")}> <FaClipboardList /> Requests </Link> */}
         <Link href="/my-listings" className={mobileNavClass("/my-listings")}> <FaListUl /> My Listing </Link>
         <Link href="/add-pet" className={mobileNavClass("/add-pet")}> <FaPlusCircle /> Add Pet </Link>
+        <Link href="/aboutus" className={mobileNavClass("/aboutus")}> <FcAbout /> About Us </Link>
 
         <hr className="border-gray-200 dark:border-gray-700" />
 
