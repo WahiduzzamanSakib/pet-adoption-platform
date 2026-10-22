@@ -12,7 +12,7 @@ export default function FAQSection({ faqs }) {
   };
 
   return (
-    <section className="max-w-4xl mx-auto py-20 px-6">
+    <section id="help" className="max-w-4xl mx-auto py-20 px-6">
 
       {/* Heading */}
       <motion.div

@@ -1,4 +1,5 @@
 "use client";
+
 import React from "react";
 import { usePathname } from "next/navigation";
 import {
@@ -16,43 +17,44 @@ export default function Footer() {
         return null;
     }
 
+    const quickLinks = [
+        { href: "/pets", label: "Find a Pet" },
+        { href: "/aboutus", label: "Our Mission" },
+        { href: "/#partner-shelters", label: "Partner Shelters" },
+        { href: "/#help", label: "How to Help" },
+    ];
+
     return (
-        <footer className="dark:bg-[#182746] bg-white py-5 border-t border-slate-200 dark:border-slate-700">
-            <div className="max-w-6xl mx-auto grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-10">
+        <footer className="border-t border-slate-200 bg-white py-10 dark:border-slate-700 dark:bg-[#182746]">
+            <div className="mx-auto grid w-full max-w-6xl grid-cols-1 gap-8 px-4 sm:grid-cols-2 sm:gap-10 lg:grid-cols-4 lg:px-6">
 
-
-                <div className="flex flex-col gap-3">
-                    <h3 className="flex items-center gap-2 text-2xl font-bold text-slate-900 dark:text-white">
+                {/* Brand */}
+                <div className="flex min-w-0 flex-col gap-3">
+                    <h3 className="flex items-center gap-2 text-xl font-bold text-slate-900 dark:text-white sm:text-2xl">
                         🐾 Pet Adoption Platform
                     </h3>
 
-                    <p className="text-gray-400 text-sm leading-relaxed max-w-sm">
+                    <p className="max-w-sm text-sm leading-relaxed text-gray-500 dark:text-gray-400">
                         Connecting compassionate hearts with animals in need. We promote
                         responsible pet ownership and support animal shelters worldwide.
                     </p>
                 </div>
 
-
-                <div className="flex flex-col gap-3">
-                    <h4 className="text-slate-900 dark:text-white text-lg font-semibold tracking-wide">
+                {/* Quick Links */}
+                <div className="flex min-w-0 flex-col gap-3">
+                    <h4 className="text-lg font-semibold tracking-wide text-slate-900 dark:text-white">
                         Quick Links
                     </h4>
 
-                    <ul className="flex flex-col gap-2.5">
-                        {[
-                            { href: "/browse", label: "Find a Pet" },
-                            { href: "/about", label: "Our Mission" },
-                            { href: "#", label: "Partner Shelters" },
-                            { href: "#", label: "How to Help" },
-                        ].map((link) => (
-                            <li key={link.label}>
+                    <ul className="grid grid-cols-2 gap-x-3 gap-y-3 sm:grid-cols-1 sm:gap-y-2.5">
+                        {quickLinks.map((link) => (
+                            <li key={link.label} className="min-w-0">
                                 <a
                                     href={link.href}
-                                    className="group inline-flex items-center gap-2 text-gray-400 hover:text-blue-400 text-sm transition-colors duration-200"
+                                    className="group inline-flex items-center gap-2 text-sm text-gray-500 transition-colors duration-200 hover:text-blue-500 dark:text-gray-400 dark:hover:text-blue-400"
                                 >
-
                                     <FaArrowRight
-                                        className="opacity-0 -translate-x-2 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-300 text-xs"
+                                        className="shrink-0 -translate-x-2 text-xs opacity-0 transition-all duration-300 group-hover:translate-x-0 group-hover:opacity-100"
                                     />
                                     {link.label}
                                 </a>
@@ -61,47 +63,66 @@ export default function Footer() {
                     </ul>
                 </div>
 
-
-                <div className="flex flex-col gap-3">
-                    <h4 className="text-slate-900 dark:text-white text-lg font-semibold tracking-wide">
+                {/* Contact */}
+                <div className="flex min-w-0 flex-col gap-3">
+                    <h4 className="text-lg font-semibold tracking-wide text-slate-900 dark:text-white">
                         Contact Us
                     </h4>
-                    <p className="text-gray-400 text-sm">
+
+                    <p className="break-words text-sm text-gray-500 dark:text-gray-400">
                         📍 1044 Adoption Way, Suite 100
                     </p>
-                    <p className="text-gray-400 text-sm">📞 (555) 123-4567</p>
-                    <p className="text-gray-400 text-sm">
+                    <p className="text-sm text-gray-500 dark:text-gray-400">
+                        📞 (555) 123-4567
+                    </p>
+                    <p className="break-all text-sm text-gray-500 dark:text-gray-400">
                         ✉️ support@petadoptionplatform.com
                     </p>
                 </div>
 
-                <div className="flex flex-col gap-3">
-                    <h4 className="text-slate-900 dark:text-white text-lg font-semibold tracking-wide">
+                {/* Social Links */}
+                <div className="flex min-w-0 flex-col gap-3">
+                    <h4 className="text-lg font-semibold tracking-wide text-slate-900 dark:text-white">
                         Follow Us
                     </h4>
 
-                    <div className="flex gap-3 mt-1.5">
+                    <div className="mt-1.5 flex flex-wrap gap-3">
                         <a
                             href="https://facebook.com"
-                            className="flex items-center justify-center w-10 h-10 rounded-full bg-gray-800 text-gray-400 hover:bg-blue-600 hover:text-white transition-all duration-200"
+                            aria-label="Facebook"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="flex h-10 w-10 items-center justify-center rounded-full bg-slate-100 text-slate-600 transition-all duration-200 hover:bg-blue-600 hover:text-white dark:bg-gray-800 dark:text-gray-300"
                         >
                             <FaFacebookF size={18} />
                         </a>
+
                         <a
                             href="https://instagram.com"
-                            className="flex items-center justify-center w-10 h-10 rounded-full bg-gray-800 text-gray-400 hover:bg-pink-600 hover:text-white transition-all duration-200"
+                            aria-label="Instagram"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="flex h-10 w-10 items-center justify-center rounded-full bg-slate-100 text-slate-600 transition-all duration-200 hover:bg-pink-600 hover:text-white dark:bg-gray-800 dark:text-gray-300"
                         >
                             <FaInstagram size={18} />
                         </a>
+
                         <a
                             href="https://x.com"
-                            className="flex items-center justify-center w-10 h-10 rounded-full bg-gray-800 text-gray-400 hover:bg-black hover:text-white transition-all duration-200"
+                            aria-label="X"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="flex h-10 w-10 items-center justify-center rounded-full bg-slate-100 text-slate-600 transition-all duration-200 hover:bg-black hover:text-white dark:bg-gray-800 dark:text-gray-300"
                         >
                             <FaXTwitter size={18} />
                         </a>
+
                         <a
                             href="https://linkedin.com"
-                            className="flex items-center justify-center w-10 h-10 rounded-full bg-gray-800 text-gray-400 hover:bg-blue-700 hover:text-white transition-all duration-200"
+                            aria-label="LinkedIn"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="flex h-10 w-10 items-center justify-center rounded-full bg-slate-100 text-slate-600 transition-all duration-200 hover:bg-blue-700 hover:text-white dark:bg-gray-800 dark:text-gray-300"
                         >
                             <FaLinkedinIn size={18} />
                         </a>
@@ -109,20 +130,28 @@ export default function Footer() {
                 </div>
             </div>
 
+            {/* Bottom Section */}
+            <hr className="mx-auto my-8 w-[calc(100%-2rem)] max-w-6xl border-slate-200 dark:border-slate-700" />
 
-            <hr className="border-gray-800 my-8 max-w-6xl mx-auto" />
-
-            <div className="max-w-6xl mx-auto flex flex-col sm:flex-row justify-between items-center gap-4">
-                <p className="text-gray-500 text-xs text-center sm:text-left">
+            <div className="mx-auto flex w-full max-w-6xl flex-col items-center gap-4 px-4 text-center sm:flex-row sm:justify-between sm:text-left lg:px-6">
+                <p className="text-xs text-gray-500">
                     &copy; 2026 Pet Adoption Platform. All rights reserved.
                 </p>
 
-                <div className="flex gap-4 items-center text-xs text-gray-500">
-                    <a href="/privacy" className="hover:text-gray-300 transition-colors">
+                <div className="flex flex-wrap items-center justify-center gap-3 text-xs text-gray-500">
+                    <a
+                        href="/privacy"
+                        className="transition-colors hover:text-blue-500 dark:hover:text-white"
+                    >
                         Privacy Policy
                     </a>
-                    <span className="text-gray-700">|</span>
-                    <a href="/terms" className="hover:text-gray-300 transition-colors">
+
+                    <span className="text-gray-400 dark:text-gray-600">|</span>
+
+                    <a
+                        href="/terms"
+                        className="transition-colors hover:text-blue-500 dark:hover:text-white"
+                    >
                         Terms of Service
                     </a>
                 </div>

@@ -29,7 +29,7 @@ const cardVariants = {
 
 export default function PartnerShelters({ partnerShelters }) {
   return (
-    <section className="max-w-6xl mx-auto py-20 px-6">
+    <section id="partner-shelters" className="max-w-6xl mx-auto py-20 px-6">
 
      
       <motion.div
