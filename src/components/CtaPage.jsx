@@ -5,7 +5,7 @@ import { FiArrowRight, FiHeart, FiUserPlus } from "react-icons/fi";
 export default function CtaPage() {
     return (
         <section className="!bg-white px-4 py-10 dark:!bg-[#0b1220]">
-            <div className="mx-auto max-w-5xl rounded-2xl bg-gradient-to-r from-orange-400 to-orange-500 px-6 py-12 text-center shadow-xl sm:px-12 sm:py-16">
+            <div className="mx-auto max-w-5xl rounded-2xl bg-gradient-to-r from-slate-800 to-slate-400 px-6 py-12 text-center shadow-xl sm:px-12 sm:py-16">
                 <FiHeart className="mx-auto text-4xl text-white" />
 
                 <h2 className="mt-5 text-3xl font-extrabold text-white sm:text-4xl">
